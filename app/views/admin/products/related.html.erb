@@ -1,0 +1,44 @@
+<%= render :partial => 'admin/shared/product_sub_menu' %>
+
+<%= render :partial => 'admin/shared/product_tabs', :locals => {:current => "Related Products"} %>
+
+
+<% if @relation_types.empty? %>
+  <%= t("no_relation_types") %>
+<% else %>
+  <div id="add-line-item">
+    <fieldset>
+      <legend><%= t('add_related_product') %></legend>
+      <div style="float:left;width:55%;margin-right:5%;">
+        <%= label_tag :add_product_name, t("name_or_sku") %>
+        <%= text_field_tag :add_product_name,  {}, :class => 'fullwidth title'  %>
+        <%= hidden_field_tag :add_variant_id %>
+      </div>
+      <div style="float:left;width:20%;margin-right:5%;">
+        <%= label_tag :add_type, t("type") %>
+        <%= select_tag :add_type, options_for_select(@relation_types.map{|rt| [rt.name, rt.id]}), :style => 'margin: 0pt; padding: 4px; font-size: 1.5em; width: 98%;' %>
+      </div>
+      <div style="float: left; width: 15%; padding-top: 17px;">
+        <%= button_link_to_remote t("add"),
+                           {:url => admin_product_relations_url(@product),
+                           :method => :post,
+                           :with => "'relation[related_to_type]=Product&relation[related_to_id]=' + $('#add_variant_id').val() + '&relation[relation_type_id]=' + $('#add_type').val()",
+                           :before => "if($('#add_variant_id').val()==''){ return false; }",
+                           :after => "$('#add_product_name').val('');$('#add_variant_id').val('');$('#add_quantity').val(1)",
+                           :update => "products-table-wrapper"}, :icon => 'add' %>
+      </div>
+
+    </fieldset>
+  </div>
+
+  <div id="products-table-wrapper">
+    <%= render :partial => "related_products_table", :locals => {:product => @product} %>
+  </div>
+
+  <% content_for :head do %>
+    <%= javascript_tag "var expand_variants = false;" %>
+    <%= javascript_include_tag 'admin/orders/edit.js' %>
+    <%= stylesheet_link_tag 'admin/edit_orders.css' %>
+  <% end %>
+
+<% end %>

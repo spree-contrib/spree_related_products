@@ -1,0 +1,20 @@
+<table class="index">
+  <thead>
+    <tr>
+      <th><%= t('name') %></th>
+      <th><%= t('type') %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% product.relations.each do |relation| %>
+      <tr id="<%= dom_id relation %>">
+        <td><%= relation.related_to.name %></td>
+        <td><%= relation.relation_type.name %></td>
+        <td width="70px">
+          <%= link_to_delete relation %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

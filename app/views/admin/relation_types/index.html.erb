@@ -1,0 +1,46 @@
+<%= render :partial => 'admin/shared/configuration_menu' %>
+
+<div class='toolbar'>
+  <ul class='actions'>
+    <li>
+      <%= button_link_to t("new_relation_type"), new_object_url, :icon => 'add'  %>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
+<h1><%= t("relation_types") %></h1>
+
+<table class="index">
+  <thead>
+    <tr>
+    <% hook :admin_relation_types_index_headers do %>
+      <th><%= t("name") %></th>
+      <th><%= t("applies_to") %></th>
+      <th><%= t("description") %></th>
+    <% end %>
+      <th>
+        <% hook :admin_relation_types_index_header_actions %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @relation_types.each do |relation_type| %>
+      <tr id="<%= dom_id relation_type %>">
+        <%- locals = {:relation_type => relation_type} -%>
+        <% hook :admin_relation_types_index_rows, locals do %>
+          <td><%= relation_type.name %></td>
+          <td><%= relation_type.applies_to %></td>
+          <td><%= relation_type.description %></td>
+        <% end %>
+        <td width="140px">
+          <% hook :admin_relation_types_index_row_actions, locals do %>
+            <%= link_to_edit relation_type %> &nbsp;
+            <%= link_to_delete relation_type %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
