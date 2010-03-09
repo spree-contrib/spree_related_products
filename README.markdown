@@ -26,17 +26,17 @@ Relation Types
 --------------
 When you create a RelationType you can access that set of related products by referencing the relation_type name, see below for an example:
 
-  rt = RelationType.create(:name => "Accessories", :applies_to => "Product")
-   => #<RelationType id: 4, name: "Accessories" ...>
-  product = Product.last
-   => #<Product id: 1060500592 ...>
-  product.accessories
-   => []
+        rt = RelationType.create(:name => "Accessories", :applies_to => "Product")
+         => #<RelationType id: 4, name: "Accessories" ...>
+        product = Product.last
+         => #<Product id: 1060500592 ...>
+        product.accessories
+         => []
 
 You can access all related products regardless of RelationType by:
 
-  product.relations
-   => []
+        product.relations
+         => []
 
 
 
