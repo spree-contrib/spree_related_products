@@ -12,7 +12,7 @@
         <td><%= relation.related_to.name %></td>
         <td><%= relation.relation_type.name %></td>
         <td width="70px">
-          <%= link_to_delete relation %>
+          <%= link_to_delete relation, {:url => admin_product_relation_url(relation.relatable, relation)} %>
         </td>
       </tr>
     <% end %>
