@@ -13,6 +13,7 @@ class RelatedProductsExtension < Spree::Extension
   # end
 
   def activate
+    Calculator::RelatedProductDiscount.register
 
     Product.class_eval do
       has_many :relations, :as => :relatable

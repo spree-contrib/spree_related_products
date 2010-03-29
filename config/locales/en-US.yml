@@ -1,5 +1,7 @@
 en-US:
   new_relation_type: New Relation Type
+  discount_amount: Discount Amount
+  related_product_discount: Related Product Discount
   relation_types: Relation Types
   applies_to: Applies To
   editing_relation_type: Editing Relation Type

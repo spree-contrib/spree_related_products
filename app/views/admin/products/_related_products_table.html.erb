@@ -2,6 +2,9 @@
   <thead>
     <tr>
       <th><%= t('name') %></th>
+      <% if Spree::Extension.descendants.include? AutomaticCouponsExtension %>
+        <th><%= t('discount_amount') %></th>
+      <% end %>
       <th><%= t('type') %></th>
       <th></th>
     </tr>
@@ -10,6 +13,9 @@
     <% product.relations.each do |relation| %>
       <tr id="<%= dom_id relation %>">
         <td><%= relation.related_to.name %></td>
+        <% if Spree::Extension.descendants.include? AutomaticCouponsExtension %>
+          <td><%= relation.discount_amount != 0 ? number_to_currency(relation.discount_amount) : "-" %></td>
+        <% end %>
         <td><%= relation.relation_type.name %></td>
         <td width="70px">
           <%= link_to_delete relation, {:url => admin_product_relation_url(relation.relatable, relation)} %>
