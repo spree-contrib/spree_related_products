@@ -9,7 +9,7 @@
   <div id="add-line-item">
     <fieldset>
       <legend><%= t('add_related_product') %></legend>
-      <div style="float:left;width:<%= SSpree::Extension.descendants.map(&:to_s).include?("AutomaticCouponsExtension") ? "40" : "55" %>%;margin-right:5%;">
+      <div style="float:left;width:<%= Spree::Extension.descendants.map(&:to_s).include?("AutomaticCouponsExtension") ? "40" : "55" %>%;margin-right:5%;">
         <%= label_tag :add_product_name, t("name_or_sku") %>
         <%= text_field_tag :add_product_name,  {}, :class => 'fullwidth title'  %>
         <%= hidden_field_tag :add_variant_id %>
