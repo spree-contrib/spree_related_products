@@ -19,7 +19,7 @@ class Calculator::RelatedProductDiscount < Calculator
     end
 
     return unless eligible?(order)
-    order.line_items.inject(0) do |total, line_item|
+    total = order.line_items.inject(0) do |total, line_item|
       relations =  Relation.find(:all, :conditions => ["discount_amount <> 0.0 AND relatable_type = ? AND relatable_id = ?", "Product", line_item.variant.product.id])
       discount_applies_to = relations.map {|rel| rel.related_to.master }
 
@@ -37,6 +37,8 @@ class Calculator::RelatedProductDiscount < Calculator
 
       total
     end
+
+    total == 0 ? nil : total
   end
 
   def eligible?(order)
