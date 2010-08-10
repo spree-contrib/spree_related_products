@@ -1,4 +1,4 @@
-class RelatedProductsHooks < Spree::ThemeSupport::HookListener
+class SpreeRelatedProductsHooks < Spree::ThemeSupport::HookListener
 
   insert_after :admin_product_tabs, "admin/products/related_products"
 
