@@ -1,4 +1,4 @@
-version = '3.0.0'
+version = '3.0.1'
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Allows multiple types of relationships between products to be defined'
   s.required_ruby_version = '>= 1.8.7'
 
-  s.files        = Dir['README.markdown', 'lib/**/*']
+  s.files        = Dir['README.markdown', 'lib/**/*', 'app/**/*', 'config/*']
   s.require_path = 'lib'
   s.requirements << 'none'
 
