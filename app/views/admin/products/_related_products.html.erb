@@ -1,5 +1,3 @@
-<% if url_options_authenticate?(:controller => 'admin/products') %>
-  <li<%= ' class="active"' if current == "Related Products" %>>
-    <%= link_to t("related_products"), related_admin_product_url(@product) %>
-  </li>
-<% end %>
+<li<%= ' class="active"' if current == "Related Products" %>>
+  <%= link_to t("related_products"), related_admin_product_url(@product) %>
+</li>

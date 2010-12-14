@@ -1,18 +1,18 @@
 <%- locals = {:f => f} -%>
-<% hook :admin_relation_type_form_fields, locals do %>
-  <% f.field_container :name do %>
+<%= hook :admin_relation_type_form_fields, locals do %>
+  <%= f.field_container :name do %>
     <%= f.label :name, t("name") %><br />
     <%= f.text_field :name, :class => 'fullwidth title' %>
     <%= error_message_on :relation_type, :name %>
   <% end %>
 
-  <% f.field_container :applies_to do %>
+  <%= f.field_container :applies_to do %>
     <%= f.label :applies_to, t("applies_to") %><br />
     <%= f.text_field :applies_to, :value => f.object.nil? ? "Product" : f.object.applies_to, :class => 'fullwidth title' %>
     <%= error_message_on :relation_type, :applies_to%>
   <% end %>
 
-  <% f.field_container :description do %>
+  <%= f.field_container :description do %>
     <%= f.label :description, t("description") %><br />
     <%= f.text_area :description, {:cols => 60, :rows => 2, :class => 'fullwidth'} %>
     <%= error_message_on :relation_type, :description %>
