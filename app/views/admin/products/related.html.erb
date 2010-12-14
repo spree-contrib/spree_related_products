@@ -32,13 +32,6 @@
             admin_product_relations_url(@product),
             {:id => "add_related_product", :class => 'button', 'data-update' => 'products-table-wrapper'} %>
 
-        <%= button_link_to t("add"),
-                           {:url => admin_product_relations_url(@product),
-                           :method => :post,
-                           :with => "'relation[related_to_type]=Product&relation[related_to_id]=' + $('#add_variant_id').val() + '&relation[relation_type_id]=' + $('#add_type').val() + '&relation[discount_amount]=' + $('#add_discount').val()",
-                           :before => "if($('#add_variant_id').val()==''){ return false; }",
-                           :after => "$('#add_product_name').val('');$('#add_variant_id').val('');$('#add_quantity').val(1)",
-                           :update => "products-table-wrapper"}, :icon => 'add' %>
       </div>
 
     </fieldset>
@@ -67,7 +60,7 @@
               $("#"+update_target).html(data);
               $('#add_product_name').val('');
               $('#add_variant_id').val('');
-              $('#add_quantity').val(1)            }
+              $('#add_quantity').val(1) }
         });
         return false;
       });
