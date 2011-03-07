@@ -6,8 +6,6 @@ module SpreeRelatedProducts
 
     def self.activate
 
-      # Calculator::RelatedProductDiscount.register
-
       Product.class_eval do
         has_many :relations, :as => :relatable
 
@@ -15,16 +13,25 @@ module SpreeRelatedProducts
           RelationType.find_all_by_applies_to(self.to_s, :order => :name)
         end
 
-        #def method_missing(method, *args)
-        #  relation_type =  self.class.relation_types.detect { |rt| rt.name.downcase.gsub(" ", "_").pluralize == method.to_s.downcase }
+        # a total hack to fix this error in ruby 1.9
         #
-        #  if relation_type.nil?
-        #    super
-        #  else
-        #    relations.find_all_by_relation_type_id(relation_type.id).map(&:related_to).select {|product| product.deleted_at.nil? && product.available_on <= Time.now()}
-        #  end
+        #   undefined local variable or method `to_ary' for #<Product:0x0000010655ad28>
         #
-        #end
+        def to_ary
+          nil
+        end
+
+        def method_missing(method, *args)
+          relation_type =  self.class.relation_types.detect { |rt| rt.name.downcase.gsub(" ", "_").pluralize == method.to_s.downcase }
+        
+          if relation_type.nil?
+            super
+          else
+            relations.find_all_by_relation_type_id(relation_type.id).map(&:related_to).select {|product| product.deleted_at.nil? && product.available_on <= Time.now()}
+          end
+        
+        end
+        
       end
 
       Admin::ProductsController.class_eval do
