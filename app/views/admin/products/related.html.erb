@@ -13,7 +13,7 @@
       <legend><%= t('add_related_product') %></legend>
       <div style="float:left;width:55%;margin-right:5%;">
         <%= label_tag :add_product_name, t("name_or_sku") %>
-        <%= text_field_tag :add_product_name,  {}, :class => 'fullwidth title'  %>
+        <%= text_field_tag :add_product_name, '', :class => 'fullwidth title'  %>
         <%= hidden_field_tag :add_variant_id %>
       </div>
       <!-- Needs to be updated once Automatic Coupons extension is migrated to 0.30.x -->
