@@ -17,7 +17,10 @@ module SpreeRelatedProducts
 
         def method_missing(method, *args)
           relation_type =  self.class.relation_types.detect { |rt| rt.name.downcase.gsub(" ", "_").pluralize == method.to_s.downcase }
-
+            
+          # Fix for Ruby 1.9
+          raise NoMethodError if method == :to_ary
+        
           if relation_type.nil?
             super
           else
