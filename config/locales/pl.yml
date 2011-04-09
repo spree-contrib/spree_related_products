@@ -1,0 +1,12 @@
+pl:
+  new_relation_type: Nowy typ relacji
+  discount_amount: Kwota zniżki
+  related_product_discount: Related Product Discount
+  relation_types: Typy relacji
+  applies_to: Ma zastosowanie do
+  editing_relation_type: Edycja typu relacji
+  related_products: Produkty powiązane
+  add_related_product: Dodaj powiązany produkt
+  name_or_sku: Nazwa lub SKU
+  manage_relation_types: Zarządzaj typami relacji
+  no_relation_types: Musisz najpierw skonfigurować typy relacji
