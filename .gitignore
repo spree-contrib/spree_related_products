@@ -3,3 +3,4 @@
 pkg
 .rvmrc
 spec/test_app
+.rspec
