@@ -19,6 +19,11 @@ desc "Regenerates a rails 3 app for testing"
 task :test_app do
   require 'spree'
   require 'generators/spree/test_app_generator'
+
+  # The generator wrecks our Gemfile and Gemfile.lock. Back them up and restore them when we're done
+  cp('Gemfile', 'Gemfile.real')
+  cp('Gemfile.lock', 'Gemfile.lock.real')
+
   class StoreTestAppGenerator < Spree::Generators::TestAppGenerator
 
     def install_gems
@@ -42,6 +47,10 @@ gem 'spree_related_products', :path => \'#{File.dirname(__FILE__)}\'
 
   end
   StoreTestAppGenerator.start
+  cp('Gemfile.real', 'Gemfile')
+  cp('Gemfile.lock.real', 'Gemfile.lock')
+  rm('Gemfile.real')
+  rm('Gemfile.lock.real')
 end
 
 namespace :test_app do
