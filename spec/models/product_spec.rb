@@ -90,10 +90,33 @@ describe Product do
       end
 
       it "should not return Products where available_on are blank" do
-        pending "uses a <= which fails on nil"
         @other.update_attributes(:available_on => nil)
 
         @product.related_products.should be_blank
+      end
+
+      it "should return all results if .relation_filter is nil" do
+        Product.should_receive(:relation_filter).and_return(nil)
+        @other.update_attributes(:available_on => Time.now + 1.hour)
+
+        @product.related_products.should include(@other)
+      end
+
+      context "with an enhanced Product.relation_filter" do
+        it "should restrict the filter" do
+          relation_filter = Product.relation_filter
+          Product.should_receive(:relation_filter).at_least(:once).and_return(relation_filter.includes(:master).where('variants.count_on_hand > 2'))
+
+          @other.master.update_attributes(:count_on_hand => 1)
+
+          other2 = valid_product!
+          other2.master.update_attributes(:count_on_hand => 3)
+          relation = Relation.create!(:relatable => @product, :related_to => other2, :relation_type => @relation_type)
+
+          results = @product.related_products
+          results.should_not include(@other)
+          results.should include(other2)
+        end
       end
     end
   end
