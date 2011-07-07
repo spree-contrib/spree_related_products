@@ -43,3 +43,10 @@ Discounts
 ---------
 If you install the spree-automatic-coupons extension you can also specify a discount amount to be applied if a customer purchases both products. Note: In order for the coupon to be automatically applied, you must create a coupon of type: __RelatedProductDiscount__ and leave the __code__ value empty (blank codes are required for coupons to be automatically applied).
 
+
+Development
+-----------
+
+Run `rake test_app` to create the test application in `spec/test_app`.
+
+`rake` will run the specs.
