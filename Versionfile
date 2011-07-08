@@ -1,3 +1,4 @@
 "0.70.x" => { :branch => "master" }
-"0.60.x" => { :version => '3.1', :ref => 'bee2e61193a713f8e993d250611a44a962ec7a2b' }
-"0.50.x" => { :version => '3.1', :ref => 'bee2e61193a713f8e993d250611a44a962ec7a2b' }
+"0.60.1" => { :version => "3.1", :ref => "ace985694e2ffa63d53e0abac8e1ec5694d99d33" }
+"0.60.x" => { :version => "3.1", :ref => "bee2e61193a713f8e993d250611a44a962ec7a2b" }
+"0.50.x" => { :version => "3.1", :ref => "bee2e61193a713f8e993d250611a44a962ec7a2b" }
