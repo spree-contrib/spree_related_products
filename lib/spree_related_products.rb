@@ -2,6 +2,7 @@ require 'spree_core'
 
 module SpreeRelatedProducts
   class Engine < Rails::Engine
+    engine_name 'spree_related_products'
 
     def self.activate
 

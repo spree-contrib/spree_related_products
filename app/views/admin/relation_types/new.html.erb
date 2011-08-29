@@ -1,17 +1,17 @@
 <%= render :partial => 'admin/shared/configuration_menu' %>
 
-<%= hook :admin_relation_type_new_form_header do %>
+<div data-hook="admin_relation_type_new_form_header">
   <h1><%= t("new_relation_type") %></h1>
 
   <%= render "shared/error_messages", :target => @relation_type %>
-<% end %>
+</div>
 
-<%= hook :admin_relation_type_new_form do %>
+<div data-hook="admin_relation_type_new_form" >
   <%= form_for(:relation_type, :url => collection_url) do |f| %>
     <%= render :partial => "form", :locals => { :f => f } %>
 
-    <%= hook :admin_relation_type_new_form_buttons do %>
+    <div data-hook="admin_relation_type_new_form_buttons">
       <%= render :partial => "admin/shared/new_resource_links" %>
-    <% end %>
+    </div>
   <% end %>
-<% end %>
+</div>

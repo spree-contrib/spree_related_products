@@ -13,31 +13,22 @@
 
 <table class="index">
   <thead>
-    <tr>
-    <%= hook :admin_relation_types_index_headers do %>
+    <tr data-hook="admin_relation_types_index_headers">
       <th><%= t("name") %></th>
       <th><%= t("applies_to") %></th>
       <th><%= t("description") %></th>
-    <% end %>
-      <th>
-        <% hook :admin_relation_types_index_header_actions %>
-      </th>
+      <th data-hook="admin_relation_types_index_header_actions">&nbsp;</th>
     </tr>
   </thead>
   <tbody>
     <% @relation_types.each do |relation_type| %>
-      <tr id="<%= dom_id relation_type %>">
-        <%- locals = {:relation_type => relation_type} -%>
-        <%= hook :admin_relation_types_index_rows, locals do %>
-          <td><%= relation_type.name %></td>
-          <td><%= relation_type.applies_to %></td>
-          <td><%= relation_type.description %></td>
-        <% end %>
-        <td width="140px">
-          <%= hook :admin_relation_types_index_row_actions, locals do %>
-            <%= link_to_edit relation_type %> &nbsp;
-            <%= link_to_delete relation_type %>
-          <% end %>
+      <tr id="<%= dom_id relation_type %>" data-hook="admin_relation_types_index_rows">
+        <td><%= relation_type.name %></td>
+        <td><%= relation_type.applies_to %></td>
+        <td><%= relation_type.description %></td>
+        <td width="140px" data-hook="admin_relation_types_index_row_actions">
+          <%= link_to_edit relation_type %> &nbsp;
+          <%= link_to_delete relation_type %>
         </td>
       </tr>
     <% end %>

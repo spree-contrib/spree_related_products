@@ -42,11 +42,9 @@
   </div>
 
   <%= content_for :head do %>
-    <%= javascript_tag "var expand_variants = false;" %>
-    <%= javascript_include_tag '/javascripts/admin/orders/edit.js' %>
-    <%= stylesheet_link_tag '/stylesheets/admin/edit_orders.css' %>
-
     <script type="text/javascript">
+      var expand_variants = false;
+
       $("#add_related_product").live("click", function(){
         if($('#add_variant_id').val() == ''){ return false; }
         update_target = jQuery(this).attr("data-update");
@@ -55,12 +53,7 @@
             data: {"relation[related_to_type]" : "Product",
                    "relation[related_to_id]": $('#add_variant_id').val(),
                    "relation[relation_type_id]": $('#add_type').val(),
-                   "relation[discount_amount]" : $('#add_discount').val()},
-            success: function(data){
-              $("#"+update_target).html(data);
-              $('#add_product_name').val('');
-              $('#add_variant_id').val('');
-              $('#add_quantity').val(1) }
+                   "relation[discount_amount]" : $('#add_discount').val()}
         });
         return false;
       });

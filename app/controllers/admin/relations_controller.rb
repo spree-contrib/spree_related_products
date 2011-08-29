@@ -1,21 +1,28 @@
 class Admin::RelationsController < Admin::BaseController
-  resource_controller
-  belongs_to :product
+  before_filter :load_data, :only => [:create, :destroy]
 
-  actions :create, :destroy
+  respond_to :js
 
-  create do
-    flash nil
+  def create
+    @relation = Relation.new(params[:relation])
+    @relation.relatable = @product
+    @relation.related_to = Variant.find(params[:relation][:related_to_id]).product
+    @relation.save
+
+    respond_with(@relation)
   end
 
-  create.before do
-    object.related_to = Variant.find(params[:relation][:related_to_id]).product
+  def destroy
+    @relation = Relation.find(params[:id])
+    @relation.destroy
+
+    respond_with(@relation)
   end
 
-  create.response do |wants|
-    wants.html { render :partial => "admin/products/related_products_table", :locals => {:product => @product}, :layout => false}
-  end
+  private
 
-  destroy.success.wants.js { render_js_for_destroy }
+    def load_data
+      @product = Product.find_by_permalink(params[:product_id])
+    end
 
 end
