@@ -14,7 +14,9 @@ Product.class_eval do
     if relation_type.nil?
       super
     else
-      relations.find_all_by_relation_type_id(relation_type.id).map(&:related_to).select {|product| product.deleted_at.nil? && product.available_on <= Time.now()}
+      relations.find_all_by_relation_type_id(relation_type.id).map(&:related_to).select do |product| 
+        product.deleted_at.nil? && !product.available_on.nil? && product.available_on <= Time.now()
+      end
     end
 
   end
