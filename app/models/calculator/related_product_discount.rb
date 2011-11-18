@@ -1,4 +1,4 @@
-class Calculator::RelatedProductDiscount < Calculator
+class Calculator::RelatedProductDiscount < Spree::Calculator
   preference :item_total_threshold, :decimal, :default => 5
 
   def self.description
@@ -7,7 +7,7 @@ class Calculator::RelatedProductDiscount < Calculator
 
   def self.register
     super
-    Coupon.register_calculator(self)
+    Spree::Coupon.register_calculator(self)
   end
 
   def compute(object)
