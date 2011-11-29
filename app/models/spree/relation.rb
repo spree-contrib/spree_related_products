@@ -1,4 +1,4 @@
-class Relation < ActiveRecord::Base
+class Spree::Relation < ActiveRecord::Base
   belongs_to :relation_type
   belongs_to :relatable, :polymorphic => true
   belongs_to :related_to, :polymorphic => true
