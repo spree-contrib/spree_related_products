@@ -13,7 +13,7 @@ module SpreeRelatedProducts
       # Calculator::RelatedProductDiscount.register
     end
 
-    config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/models/calculator)
+    config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/models/spree/calculator)
     config.to_prepare &method(:activate).to_proc
 
   end

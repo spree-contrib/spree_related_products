@@ -24,10 +24,10 @@ Relation Types
 --------------
 When you create a RelationType you can access that set of related products by referencing the relation_type name, see below for an example:
 
-        rt = RelationType.create(:name => "Accessories", :applies_to => "Product")
-         => #<RelationType id: 4, name: "Accessories" ...>
-        product = Product.last
-         => #<Product id: 1060500592 ...>
+        rt = Spree::RelationType.create(:name => "Accessories", :applies_to => "Spree::Product")
+         => #<Spree::RelationType id: 4, name: "Accessories" ...>
+        product = Spree::Product.last
+         => #<Spree::Product id: 1060500592 ...>
         product.accessories
          => []
 

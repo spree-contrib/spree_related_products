@@ -1,8 +1,8 @@
-Product.class_eval do
+Spree::Product.class_eval do
   has_many :relations, :as => :relatable
 
   def self.relation_types
-    RelationType.find_all_by_applies_to(self.to_s, :order => :name)
+    Spree::RelationType.find_all_by_applies_to(self.to_s, :order => :name)
   end
 
   def method_missing(method, *args)
