@@ -1,18 +1,17 @@
-require 'rubygems'
-require 'rake'
-require 'rake/testtask'
-require 'rake/packagetask'
-require 'rake/gempackagetask'
+require 'bundler'
+Bundler::GemHelper.install_tasks
+Bundler.setup
 
-spec = eval(File.read('spree_related_products.gemspec'))
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new
 
-Rake::GemPackageTask.new(spec) do |p|
-  p.gem_spec = spec
-end
+require 'spree/core/testing_support/common_rake'
 
-desc "Release to gemcutter"
-task :release => :package do
-  require 'rake/gemcutter'
-  Rake::Gemcutter::Tasks.new(spec).define
-  Rake::Task['gem:push'].invoke
+desc "Default Task"
+task :default => [:spec]
+
+desc "Generates a dummy app for testing"
+task :test_app do
+  ENV['LIB_NAME'] = 'spree_related_products'
+  Rake::Task['common:test_app'].invoke
 end

@@ -1,3 +1,0 @@
-0.50.x :branch => '0-50-stable'
-# 0.40.x :ref => '251f6c20fee3d2f07d93'
-# 0.30.x :tag => 'v0.30.x'

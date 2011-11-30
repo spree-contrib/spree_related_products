@@ -1,4 +1,6 @@
-.DS_Store
 *.swp
+.DS_Store
+.rvmrc
+Gemfile.lock
 pkg
-
+spec/dummy

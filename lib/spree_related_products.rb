@@ -10,7 +10,6 @@ module SpreeRelatedProducts
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
 
-      # Calculator::RelatedProductDiscount.register
     end
 
     config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/models/spree/calculator)
@@ -18,4 +17,3 @@ module SpreeRelatedProducts
 
   end
 end
-
