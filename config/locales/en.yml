@@ -9,4 +9,4 @@ en:
   add_related_product: Add Related Product
   name_or_sku: Name or SKU
   manage_relation_types: Manage relation types
-  no_relation_types: You need to configure Realtion Types before you can use this feature.
+  no_relation_types: You need to configure Relation Types before you can use this feature.
