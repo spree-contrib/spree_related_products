@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.has_rdoc = true
 
   s.add_dependency 'spree_core', '>= 1.0.0.beta'
+  s.add_dependency 'spree_promo', '>= 1.0.0.beta'
 
   s.add_development_dependency 'factory_girl'
   s.add_development_dependency 'rspec-rails',  ' ~> 2.8.0.rc1'

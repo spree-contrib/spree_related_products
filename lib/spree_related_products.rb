@@ -12,6 +12,10 @@ module SpreeRelatedProducts
 
     end
 
+    initializer "spree.promo.register.promotion.calculators" do |app|
+      app.config.spree.calculators.promotion_actions_create_adjustments << Calculator::RelatedProductDiscount
+    end
+
     config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/models/spree/calculator)
     config.to_prepare &method(:activate).to_proc
 

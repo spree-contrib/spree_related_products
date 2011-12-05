@@ -6,11 +6,6 @@ module Spree
       I18n.t("related_product_discount")
     end
 
-    def self.register
-      super
-      Spree::Coupon.register_calculator(self)
-    end
-
     def compute(object)
       if object.is_a?(Array)
         return if object.empty?
