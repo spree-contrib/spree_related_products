@@ -38,7 +38,7 @@ You can access all related products regardless of RelationType by:
 
 Discounts
 ---------
-If you install the spree-automatic-coupons extension you can also specify a discount amount to be applied if a customer purchases both products. Note: In order for the coupon to be automatically applied, you must create a coupon of type: __RelatedProductDiscount__ and leave the __code__ value empty (blank codes are required for coupons to be automatically applied).
+Currently, master doesn't support discounts out of the box.  There is however a branch __implement_discounts__ that should have the necessary discount-enabled code (which was cherry-picked from the working 0-70-x branch).
 
 Installation
 ------------
