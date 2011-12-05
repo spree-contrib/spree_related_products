@@ -5,11 +5,6 @@ class Calculator::RelatedProductDiscount < Calculator
     I18n.t("related_product_discount")
   end
 
-  def self.register
-    super
-    Coupon.register_calculator(self)
-  end
-
   def compute(object)
     if object.is_a?(Array)
       return if object.empty?

@@ -1,4 +1,5 @@
 require 'spree_core'
+require 'spree_promo'
 
 module SpreeRelatedProducts
   class Engine < Rails::Engine
@@ -11,6 +12,10 @@ module SpreeRelatedProducts
       end
 
       # Calculator::RelatedProductDiscount.register
+    end
+
+    initializer "spree.promo.register.promotion.calculators" do |app|
+      app.config.spree.calculators.promotion_actions_create_adjustments << Calculator::RelatedProductDiscount
     end
 
     config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/models/calculator)
