@@ -1,5 +1,5 @@
 "1.0.x"  => { :branch => "master" }
-"0.70.x" => { :version => "3.2", :branch => "0-70-stable" }
-"0.60.1" => { :version => "3.1", :ref => "ace985694e2ffa63d53e0abac8e1ec5694d99d33" }
-"0.60.x" => { :version => "3.1", :ref => "bee2e61193a713f8e993d250611a44a962ec7a2b" }
+"0.70.x" => { :branch => "0-70-stable" }
+"0.70.x" => { :version => "4.0", :ref => "8d69c795e181404688577582ebcf7f324474a49d" }
+"0.60.x" => { :version => "3.2", :ref => "ace985694e2ffa63d53e0abac8e1ec5694d99d33" }
 "0.50.x" => { :version => "3.1", :ref => "bee2e61193a713f8e993d250611a44a962ec7a2b" }
