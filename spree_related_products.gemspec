@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_related_products'
-  s.version     = '3.2'
+  s.version     = '4.0' #NOTE: Version is arbitrary since intended only for use with bundler and specific SHA
   s.summary     = 'Allows multiple types of relationships between products to be defined'
   s.description = 'Allows multiple types of relationships between products to be defined'
   s.required_ruby_version = '>= 1.8.7'
