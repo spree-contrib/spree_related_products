@@ -1,6 +1,9 @@
 Related Products
 ================
 
+[![Build
+Status](https://secure.travis-ci.org/spree/spree_related_products.png)](http://travis-ci.org/spree/spree_related_products)
+
 This extension provides a generic way for you to define different types of relationships between your products, by defining a RelationType for each type of relationship you'd like to maintain.
 
 You can manage RelationTypes via the admin configuration menu, and you can maintain product relationships via __Related Products__ tab on the edit product UI.
