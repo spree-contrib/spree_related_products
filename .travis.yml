@@ -5,6 +5,7 @@ script: "DISPLAY=:99.0 bundle exec rspec spec"
 notifications:
   email:
     - jdyer@spreecommerce.com
+  irc: "irc.freenode.org#spree"
 branches:
   only:
     - master
