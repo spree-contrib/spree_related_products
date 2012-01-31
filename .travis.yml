@@ -1,4 +1,4 @@
-before_install: gem install bundler --pre
+before_install: gem install bundler
 before_script:
   - "bundle exec rake test_app"
 script: "DISPLAY=:99.0 bundle exec rspec spec"
