@@ -9,7 +9,7 @@ namespace :spree_related_products do
     task :migrations do
       source = File.join(File.dirname(__FILE__), '..', '..', 'db')
       destination = File.join(Rails.root, 'db')
-      Spree::FileUtilz.mirror_files(source, destination)
+      Spree::Core::FileUtilz.mirror_files(source, destination)
     end
   end
 
