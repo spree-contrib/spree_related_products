@@ -38,7 +38,9 @@ You can access all related products regardless of RelationType by:
 
 Discounts
 ---------
-You can optionally specify a discount amount to be applied if a customer purchases both products. Note: In order for the coupon to be automatically applied, you must create a coupon of type: __RelatedProductDiscount__ and leave the __code__ value empty (blank codes are required for coupons to be automatically applied).
+You can optionally specify a discount amount to be applied if a customer purchases both products.
+
+Note: In order for the coupon to be automatically applied, you must create a promotion leaving the __code__ value empty, and adding an Action of type : __RelatedProductDiscount__  (blank codes are required for coupons to be automatically applied).
 
 Installation
 ------------

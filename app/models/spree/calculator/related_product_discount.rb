@@ -1,5 +1,5 @@
 module Spree
-  class RelatedProductDiscount < Spree::Calculator
+  class Calculator::RelatedProductDiscount < Spree::Calculator
     preference :item_total_threshold, :decimal, :default => 5
 
     def self.description
@@ -16,12 +16,12 @@ module Spree
 
       return unless eligible?(order)
       total = order.line_items.inject(0) do |total, line_item|
-        relations =  Spree::Relation.find(:all, :conditions => ["discount_amount <> 0.0 AND relatable_type = ? AND relatable_id = ?", "Product", line_item.variant.product.id])
+        relations =  Spree::Relation.find(:all, :conditions => ["discount_amount <> 0.0 AND relatable_type = ? AND relatable_id = ?", "Spree::Product", line_item.variant.product.id])
         discount_applies_to = relations.map {|rel| rel.related_to.master }
 
         order.line_items.each do |li|
           if discount_applies_to.include? li.variant
-            discount = relations.detect {|rel| rel.related_to.variant == li.variant}.discount_amount
+            discount = relations.detect {|rel| rel.related_to.master == li.variant}.discount_amount
 
             total += if li.quantity < line_item.quantity
               (discount * li.quantity)
@@ -38,7 +38,7 @@ module Spree
     end
 
     def eligible?(order)
-      order.line_items.any? { |line_item| Spree::Relation.exists?(["discount_amount <> 0.0 AND relatable_type = ? AND relatable_id = ?", "Product", line_item.variant.product.id])}
+      order.line_items.any? { |line_item| Spree::Relation.exists?(["discount_amount <> 0.0 AND relatable_type = ? AND relatable_id = ?", "Spree::Product", line_item.variant.product.id])}
     end
 
   end
