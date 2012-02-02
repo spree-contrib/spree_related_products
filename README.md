@@ -40,8 +40,9 @@ You can access all related products regardless of RelationType by:
          => []
 
 Discounts
----------
-Currently, master doesn't support discounts out of the box.  There is however a branch __implement_discounts__ that should have the necessary discount-enabled code (which was cherry-picked from the working 0-70-x branch).
+You can optionally specify a discount amount to be applied if a customer purchases both products.
+
+Note: In order for the coupon to be automatically applied, you must create a promotion leaving the __code__ value empty, and adding an Action of type : __RelatedProductDiscount__  (blank codes are required for coupons to be automatically applied).
 
 Installation
 ------------
