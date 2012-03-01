@@ -42,7 +42,9 @@ You can access all related products regardless of RelationType by:
 Discounts
 You can optionally specify a discount amount to be applied if a customer purchases both products.
 
-Note: In order for the coupon to be automatically applied, you must create a promotion leaving the __code__ value empty, and adding an Action of type : __RelatedProductDiscount__  (blank codes are required for coupons to be automatically applied).
+Note: In order for the coupon to be automatically applied, you must create a promotion and add a "Create adjustment" action with a __Related Product Discount__ calculator.  You should be able to add any other criteria or actions that you want as well.  If you don't add any rules, it should be applied to all orders w/ matching products.
+
+Note: Item Total Threshold is NOT implemented
 
 Installation
 ------------
