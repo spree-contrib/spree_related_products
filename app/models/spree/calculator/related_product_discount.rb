@@ -21,13 +21,11 @@ module Spree
 
         order.line_items.each do |li|
           if discount_applies_to.include? li.product
-            discount = relations.detect {|rel| rel.related_to == li.product}.discount_amount
-
-            total += if li.quantity < line_item.quantity
-              (discount * li.quantity)
-            else
-              (discount * line_item.quantity)
-            end
+            discount_percent = relations.detect {|rel| rel.related_to == li.product}.discount_amount
+            
+            # only apply the discount as many times as the minimum quantity of matching products
+            quantity = [li.quantity, line_item.quantity].min
+            total += (li.price * discount_percent / 100.0) * quantity
           end
         end
 
