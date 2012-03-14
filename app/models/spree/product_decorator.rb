@@ -1,5 +1,6 @@
 Spree::Product.class_eval do
   has_many :relations, :as => :relatable
+  has_many :related_tos, :as => :related_to, :class_name => 'Relation'
 
   # Returns all the Spree::RelationType's which apply_to this class.
   def self.relation_types
