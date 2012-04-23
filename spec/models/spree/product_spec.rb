@@ -107,10 +107,10 @@ describe Spree::Product do
           relation_filter = Spree::Product.relation_filter
           Spree::Product.should_receive(:relation_filter).at_least(:once).and_return(relation_filter.includes(:master).where('spree_variants.count_on_hand > 2'))
 
-          @other.master.update_attributes(:count_on_hand => 1)
+          @other.master.update_attributes({:count_on_hand => 1}, :without_protection => true)
 
           other2 = Factory(:product)
-          other2.master.update_attributes(:count_on_hand => 3)
+          other2.master.update_attributes({:count_on_hand => 3}, :without_protection => true)
           relation = Spree::Relation.create!(:relatable => @product, :related_to => other2, :relation_type => @relation_type)
 
           results = @product.related_products
