@@ -26,8 +26,8 @@
       </div>
       <div style="float: left; width: 15%; padding-top: 17px;">
         <%= link_to text_for_button_link(t("add"), :icon => 'add'),
-            admin_product_relations_url(@product),
-            {:id => "add_related_product", :class => 'button', 'data-update' => 'products-table-wrapper'} %>
+          admin_product_relations_url(@product),
+          {:id => "add_related_product", :class => 'button', 'data-update' => 'products-table-wrapper'} %>
 
       </div>
 
@@ -46,11 +46,16 @@
         if($('#add_variant_id').val() == ''){ return false; }
         update_target = jQuery(this).attr("data-update");
 
-        jQuery.ajax({ dataType: 'script', url: this.href, type: "POST",
-            data: {"relation[related_to_type]" : "Product",
-                   "relation[related_to_id]": $('#add_variant_id').val(),
-                   "relation[relation_type_id]": $('#add_type').val(),
-                   "relation[discount_amount]" : $('#add_discount').val()}
+        jQuery.ajax({
+          dataType: 'script', 
+          url: this.href, 
+          type: "POST",
+          data: {
+            "relation[related_to_type]" : "Product",
+            "relation[related_to_id]": $('#add_variant_id').val(),
+            "relation[relation_type_id]": $('#add_type').val(),
+            "relation[discount_amount]" : $('#add_discount').val()
+          }
         });
         return false;
       });
