@@ -32,11 +32,7 @@ module Spree
                                 relation_for_line_item.discount_amount].max
           end
         end
-        if line_item.respond_to?(:total_discount)
-          discount = line_item.total_discount
-        else
-          discount = ((line_item.price * discount_percent / 100.0) * line_item.quantity).round(2)
-        end
+        discount = ((line_item.price * discount_percent / 100.0) * line_item.quantity).round(2)
         if line_item.respond_to?(:discount_percent)
           line_item.update_column( :discount_percent, discount_percent )
         end
