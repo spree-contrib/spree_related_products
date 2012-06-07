@@ -14,29 +14,41 @@ module Spree
         order = object
       end
 
-      return unless eligible?(order)
-      total = order.line_items.inject(0) do |total, line_item|
-        relations =  Spree::Relation.find(:all, :conditions => ["discount_amount <> 0.0 AND relatable_type = ? AND relatable_id = ?", "Spree::Product", line_item.variant.product.id])
-        discount_applies_to = relations.map {|rel| rel.related_to }
+      # related_to is the one that gets the discount
+      product_ids = order.line_items.map{|i| i.variant.product_id}.uniq
+      discounts = Spree::Relation.where(["discount_amount <> 0.0 AND related_to_type = ? AND related_to_id IN (?)", "Spree::Product", product_ids]).all.group_by(&:related_to_id)
+      return if discounts.empty?
 
-        order.line_items.each do |li|
-          if discount_applies_to.include? li.product
-            discount_percent = relations.detect {|rel| rel.related_to == li.product}.discount_amount
-            
-            # only apply the discount as many times as the minimum quantity of matching products
-            quantity = [li.quantity, line_item.quantity].min
-            total += (li.price * discount_percent / 100.0) * quantity
+      total = 0
+      order.line_items.each do |line_item|
+        relations_for_line_item = discounts[line_item.variant.product_id]
+        next if relations_for_line_item.blank?
+
+        discount_percent = 0
+        relations_for_line_item.each do |relation_for_line_item|
+          if product_ids.include?( relation_for_line_item.relatable_id )
+            # Apply the maximum available discount percentage
+            discount_percent = [discount_percent,
+                                relation_for_line_item.discount_amount].max
           end
         end
-
-        total
+        if line_item.respond_to?(:total_discount)
+          discount = line_item.total_discount
+        else
+          discount = ((line_item.price * discount_percent / 100.0) * line_item.quantity).round(2)
+        end
+        if line_item.respond_to?(:discount_percent)
+          line_item.update_column( :discount_percent, discount_percent )
+        end
+        total += discount
       end
 
       total == 0 ? nil : total
     end
 
     def eligible?(order)
-      order.line_items.any? { |line_item| Spree::Relation.exists?(["discount_amount <> 0.0 AND relatable_type = ? AND relatable_id = ?", "Spree::Product", line_item.variant.product.id])}
+      product_ids = order.line_items.map{|i| i.variant.product_id}.uniq
+      Spree::Relation.where(["discount_amount <> 0.0 AND related_to_type = ? AND related_to_id IN (?)", "Spree::Product", product_ids]).exists?
     end
 
   end
