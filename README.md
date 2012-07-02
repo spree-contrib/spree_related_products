@@ -34,6 +34,15 @@ When you create a RelationType you can access that set of related products by re
         product.accessories
          => []
 
+Since respond_to? will not work in this case, you can test whether a relation_type method exists with has_related_products?(method):
+
+	product.has_related_products?("accessories")
+	 => true
+
+	if product.has_related_products?("accessories")
+	  # Display an accessories box
+	end
+
 You can access all related products regardless of RelationType by:
 
         product.relations
