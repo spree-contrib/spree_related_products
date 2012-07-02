@@ -43,7 +43,7 @@ Spree::Product.class_eval do
   end
 
   def has_related_products?(relation_method)
-    !find_relation_type(relation_method).nil?
+    find_relation_type(relation_method).present?
   end
 
   private
