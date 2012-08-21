@@ -1,0 +1,10 @@
+de:
+  new_relation_type: Neuer Verwandschaftstyp
+  related_product_discount: Skonto für verwandte Produkte
+  relation_types: Verwandschaftstypen
+  applies_to: Anwenden auf
+  editing_relation_type: Verwandschaftstyp bearbeiten
+  related_products: Verwandte Produkte
+  add_related_product: Verwandtes Produkt hinzufügen
+  manage_relation_types: Verwandschaftstypen konfigurieren
+  no_relation_types: "Sie müssen Verwandschaftstypen konfigurieren, bevor Sie diese Funktion nutzen können."
