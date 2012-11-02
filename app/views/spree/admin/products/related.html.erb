@@ -2,6 +2,8 @@
 
 <%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => "Related Products"} %>
 
+<%= render :partial => "spree/admin/variants/autocomplete", :formats => :js %>
+
 
 <%= csrf_meta_tag %>
 
@@ -12,9 +14,8 @@
     <fieldset>
       <legend><%= t('add_related_product') %></legend>
       <div style="float:left;width:55%;margin-right:5%;">
-        <%= label_tag :add_product_name, t("name_or_sku") %>
-        <%= text_field_tag :add_product_name,  '', :class => 'fullwidth title product_autocomplete'  %>
-        <%= hidden_field_tag :add_variant_id %>
+        <%= label_tag :add_variant_name, t("name_or_sku") %>
+        <%= text_field_tag :add_variant_name,  '', :class => 'fullwidth variant_autocomplete'  %>
       </div>
       <div style="float:left;width:10%;margin-right:5%;">
         <%= label_tag :add_discount, t("discount_amount") %>
@@ -43,7 +44,7 @@
       var expand_variants = false;
 
       $("#add_related_product").live("click", function(){
-        if($('#add_variant_id').val() == ''){ return false; }
+        if($('#add_variant_name').val() == ''){ return false; }
         update_target = jQuery(this).attr("data-update");
 
         jQuery.ajax({
@@ -52,7 +53,7 @@
           type: "POST",
           data: {
             "relation[related_to_type]" : "Product",
-            "relation[related_to_id]": $('#add_variant_id').val(),
+            "relation[related_to_id]": $('#add_variant_name').val(),
             "relation[relation_type_id]": $('#add_type').val(),
             "relation[discount_amount]" : $('#add_discount').val()
           }
