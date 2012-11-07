@@ -1,0 +1,11 @@
+nl:
+  new_relation_type: Nieuw relatie type
+  related_product_discount: Korting gerelateerd product
+  relation_types: Relatie types
+  applies_to: Toegepast op
+  editing_relation_type: Relatie type bewerken
+  related_products: Gerelateerde producten
+  add_related_product: Gerelateerd product toevoegen
+  name_or_sku: Naam of SKU
+  manage_relation_types: Relatie types bewerken
+  no_relation_types: Je moet relatie types instellen voordat je deze functie kan gebruiken.
