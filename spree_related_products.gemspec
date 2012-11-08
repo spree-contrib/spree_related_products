@@ -17,10 +17,11 @@ Gem::Specification.new do |s|
 
   s.has_rdoc = true
 
-  s.add_dependency 'spree_core', '>= 1.2.0'
-  s.add_dependency 'spree_promo', '>= 1.2.0'
+  s.add_dependency 'spree_core', '~> 1.3.0'
+  s.add_dependency 'spree_promo', '~> 1.3.0'
 
   s.add_development_dependency 'factory_girl', '2.6.4'
+  s.add_development_dependency 'ffaker'
   s.add_development_dependency 'rspec-rails',  '~> 2.9.0'
   s.add_development_dependency 'sqlite3'
 end

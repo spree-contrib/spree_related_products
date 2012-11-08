@@ -1,7 +1,4 @@
 source 'http://rubygems.org'
-
-group :test do
-  gem 'faker'
-end
-
+# TODO remove when Spree 1.3.x is released
+gem 'spree', :github => 'spree/spree'
 gemspec
