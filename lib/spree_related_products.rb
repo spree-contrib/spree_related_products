@@ -1,5 +1,4 @@
 require 'spree_core'
-require 'spree_promo'
 
 module SpreeRelatedProducts
   class Engine < Rails::Engine
