@@ -1,6 +1,7 @@
 module Spree
   class Calculator::RelatedProductDiscount < Spree::Calculator
     preference :item_total_threshold, :decimal, :default => 5
+    attr_accessible :preferred_item_total_threshold
 
     def self.description
       I18n.t("related_product_discount")
