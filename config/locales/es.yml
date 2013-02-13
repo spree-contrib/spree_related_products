@@ -9,3 +9,4 @@ es:
   name_or_sku: Nombre o SKU
   manage_relation_types: Administrar tipos de relación
   no_relation_types: Debes configurar tipos de relación antes de poder usar esto.
+  item_total_threshold: Umbral total del artículo
