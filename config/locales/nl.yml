@@ -1,6 +1,6 @@
 nl:
   new_relation_type: Nieuw relatie type
-  related_product_discount: Korting gerelateerd product
+  related_product_discount: "Korting gerelateerd product (%)"
   relation_types: Relatie types
   applies_to: Toegepast op
   editing_relation_type: Relatie type bewerken

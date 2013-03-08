@@ -24,6 +24,8 @@ module Spree
           if discount_applies_to.include? li.variant
             discount = relations.detect {|rel| rel.related_to.master == li.variant}.discount_amount
 
+            discount = li.variant.price * discount / 100
+
             total += if li.quantity < line_item.quantity
               (discount * li.quantity)
             else

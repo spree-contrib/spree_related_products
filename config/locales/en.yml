@@ -1,6 +1,6 @@
 en:
   new_relation_type: New Relation Type
-  related_product_discount: Related Product Discount
+  related_product_discount: "Related Product Discount (%)"
   relation_types: Relation Types
   applies_to: Applies To
   editing_relation_type: Editing Relation Type
