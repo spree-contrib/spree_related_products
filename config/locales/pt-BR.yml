@@ -1,6 +1,6 @@
 pt-BR:
   new_relation_type: Novo tipo de relacionamento
-  related_product_discount: "Desconto de produto relacionado (%)"
+  related_product_discount: Desconto de produto relacionado
   relation_types: Tipos de relacionamento
   applies_to: Aplicado à
   editing_relation_type: Editando tipo de relacionamento

@@ -1,6 +1,6 @@
 ru:
   new_relation_type: Новый Тип Отношений
-  related_product_discount: "Скидка На Относящийся Товар (%)"
+  related_product_discount: Скидка На Относящийся Товар
   relation_types: Типы Отношений
   applies_to: Применяется К
   editing_relation_type: Редактируется Тип Отношений

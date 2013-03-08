@@ -1,6 +1,6 @@
 de:
   new_relation_type: Neuer Verwandschaftstyp
-  related_product_discount: "Skonto für verwandte Produkte (%)"
+  related_product_discount: Skonto für verwandte Produkte
   relation_types: Verwandschaftstypen
   applies_to: Anwenden auf
   editing_relation_type: Verwandschaftstyp bearbeiten
