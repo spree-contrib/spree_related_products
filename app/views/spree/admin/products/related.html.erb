@@ -40,24 +40,27 @@
 
   <%= content_for :head do %>
     <script type="text/javascript">
-      var expand_variants = false;
+      $(function(event){
+        var expand_variants = false;
 
-      $("#add_related_product").live("click", function(){
-        if($('#add_variant_id').val() == ''){ return false; }
-        update_target = jQuery(this).attr("data-update");
+        $("#add_related_product").on("click", function(event){
+          event.preventDefault();
+          if($('#add_variant_id').val() == ''){ return false; }
+          update_target = jQuery(this).attr("data-update");
 
-        jQuery.ajax({
-          dataType: 'script', 
-          url: this.href, 
-          type: "POST",
-          data: {
-            "relation[related_to_type]" : "Product",
-            "relation[related_to_id]": $('#add_variant_id').val(),
-            "relation[relation_type_id]": $('#add_type').val(),
-            "relation[discount_amount]" : $('#add_discount').val()
-          }
+          jQuery.ajax({
+            dataType: 'script',
+            url: this.href,
+            type: "POST",
+            data: {
+              "relation[related_to_type]" : "Product",
+              "relation[related_to_id]"   : $('#add_variant_id').val(),
+              "relation[relation_type_id]": $('#add_type').val(),
+              "relation[discount_amount]" : $('#add_discount').val()
+            }
+          });
+          return false;
         });
-        return false;
       });
     </script>
   <% end %>
