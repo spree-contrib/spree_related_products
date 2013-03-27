@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.version     = '3.2'
   s.summary     = 'Allows multiple types of relationships between products to be defined'
   s.description = 'Allows multiple types of relationships between products to be defined'
-  s.required_ruby_version = '>= 1.8.7'
+  s.required_ruby_version = '>= 1.9.3'
 
   s.author            = 'Brian Quinn'
   s.email             = 'brian@railsdog.com'
