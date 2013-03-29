@@ -3,7 +3,7 @@ module Spree
 		class RelationsController < BaseController
 		  before_filter :load_data, :only => [:create, :destroy]
 
-		  respond_to :js
+		  respond_to :js, :html
 
 		  def create
 		    @relation = Relation.new(params[:relation])
@@ -12,6 +12,13 @@ module Spree
 		    @relation.save
 
 		    respond_with(@relation)
+		  end
+
+		  def update
+		    @relation = Relation.find(params[:id])
+		    @relation.update_attribute :discount_amount, params[:relation][:discount_amount] || 0
+
+		    redirect_to( related_admin_product_url(@relation.relatable) )
 		  end
 
 		  def destroy
