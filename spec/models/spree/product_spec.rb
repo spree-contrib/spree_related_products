@@ -13,15 +13,15 @@ describe Spree::Product do
 
   context "instance" do
     before(:each) do
-      @product = Factory(:product)
+      @product = FactoryGirl.create(:product)
       @relation_type = Spree::RelationType.create(:name => "Related Products", :applies_to => "Spree::Product")
     end
 
     describe ".relations" do
       it "has many relations" do
         @product.save!
-        other1 = Factory(:product)
-        other2 = Factory(:product)
+        other1 = FactoryGirl.create(:product)
+        other2 = FactoryGirl.create(:product)
 
         relation1 = Spree::Relation.create!(:relatable => @product, :related_to => other1, :relation_type => @relation_type)
         relation2 = Spree::Relation.create!(:relatable => @product, :related_to => other2, :relation_type => @relation_type)
@@ -33,7 +33,7 @@ describe Spree::Product do
 
       it "has many relations for different RelationTypes" do
         @product.save!
-        other = Factory(:product)#valid_product!
+        other = FactoryGirl.create(:product)#valid_product!
 
         other_relation_type = Spree::RelationType.new(:name => "Recommended Products")
 
@@ -49,7 +49,7 @@ describe Spree::Product do
     describe "RelationType finders" do
       before(:each) do
         @product.save!
-        @other = Factory(:product)
+        @other = FactoryGirl.create(:product)
         @relation = Spree::Relation.create!(:relatable => @product, :related_to => @other, :relation_type => @relation_type)
         @product.reload
       end
@@ -65,7 +65,7 @@ describe Spree::Product do
 
       it "should not return relations for another RelationType" do
         @product.save!
-        other2 = Factory(:product)
+        other2 = FactoryGirl.create(:product)
 
         other_relation_type = Spree::RelationType.new(:name => "Recommended Products")
 
@@ -109,7 +109,7 @@ describe Spree::Product do
 
           @other.master.update_attributes({:count_on_hand => 1}, :without_protection => true)
 
-          other2 = Factory(:product)
+          other2 = FactoryGirl.create(:product)
           other2.master.update_attributes({:count_on_hand => 3}, :without_protection => true)
           relation = Spree::Relation.create!(:relatable => @product, :related_to => other2, :relation_type => @relation_type)
 
