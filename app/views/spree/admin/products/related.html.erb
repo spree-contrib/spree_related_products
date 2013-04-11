@@ -13,25 +13,24 @@
   <div id="add-line-item">
     <fieldset>
       <legend><%= t('add_related_product') %></legend>
-      <div style="float:left;width:55%;margin-right:5%;">
+      <div class='columns four'>
         <%= label_tag :add_variant_name, t("name_or_sku") %>
         <%= hidden_field_tag :add_variant_name, "", :class => "variant_autocomplete fullwidth" %>
       </div>
-      <div style="float:left;width:10%;margin-right:5%;">
+      <div class='columns three'>
+        <%= label_tag :add_type, t("type") %><br/>
+        <%= select_tag :add_type, options_for_select(@relation_types.map{|rt| [rt.name, rt.id]}), :class => 'select2' %>
+      </div>
+      <div class='columns three'>
         <%= label_tag :add_discount, t("discount_amount") %>
         <%= text_field_tag :add_discount, 0.0, :style => 'margin: 0pt; padding: 4px; font-size: 1.5em; width: 98%;'  %>
       </div>
-      <div style="float:left;width:20%;margin-right:5%;">
-        <%= label_tag :add_type, t("type") %>
-        <%= select_tag :add_type, options_for_select(@relation_types.map{|rt| [rt.name, rt.id]}), :style => 'margin: 0pt; padding: 4px; font-size: 1.5em; width: 98%;' %>
-      </div>
-      <div style="float: left; width: 15%; padding-top: 17px;">
+      <div class='columns one'>
+        <label style='visibility: hidden;'>&nbsp;</label>
         <%= link_to text_for_button_link(t("add"), :icon => 'add'),
           admin_product_relations_url(@product),
           {:id => "add_related_product", :class => 'button', 'data-update' => 'products-table-wrapper'} %>
-
       </div>
-
     </fieldset>
   </div>
 
