@@ -1,11 +1,12 @@
 ru:
-  new_relation_type: Новый Тип Отношений
-  related_product_discount: Скидка На Относящийся Товар
-  relation_types: Типы Отношений
-  applies_to: Применяется К
-  editing_relation_type: Редактируется Тип Отношений
-  related_products: Относящиеся Товары
-  add_related_product: Добавить Относящийся Товар
-  name_or_sku: Название или Артикул
-  manage_relation_types: Управлять типами отношений
-  no_relation_types: Перед тем как поспользоваться этим функционалом настройте Типы Отношений.
+  spree:
+    new_relation_type: Новый Тип Отношений
+    related_product_discount: Скидка На Относящийся Товар
+    relation_types: Типы Отношений
+    applies_to: Применяется К
+    editing_relation_type: Редактируется Тип Отношений
+    related_products: Относящиеся Товары
+    add_related_product: Добавить Относящийся Товар
+    name_or_sku: Название или Артикул
+    manage_relation_types: Управлять типами отношений
+    no_relation_types: Перед тем как поспользоваться этим функционалом настройте Типы Отношений.

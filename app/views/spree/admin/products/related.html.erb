@@ -8,26 +8,26 @@
 <%= csrf_meta_tag %>
 
 <% if @relation_types.empty? %>
-  <%= t("no_relation_types") %>
+  <%= Spree.t("no_relation_types") %>
 <% else %>
   <div id="add-line-item">
     <fieldset>
       <legend><%= t('add_related_product') %></legend>
       <div class='columns four'>
-        <%= label_tag :add_variant_name, t("name_or_sku") %>
+        <%= label_tag :add_variant_name, Spree.t("name_or_sku") %>
         <%= hidden_field_tag :add_variant_name, "", :class => "variant_autocomplete fullwidth" %>
       </div>
       <div class='columns three'>
-        <%= label_tag :add_type, t("type") %><br/>
+        <%= label_tag :add_type, Spree.t("type") %><br/>
         <%= select_tag :add_type, options_for_select(@relation_types.map{|rt| [rt.name, rt.id]}), :class => 'select2' %>
       </div>
       <div class='columns three'>
-        <%= label_tag :add_discount, t("discount_amount") %>
+        <%= label_tag :add_discount, Spree.t("discount_amount") %>
         <%= text_field_tag :add_discount, 0.0, :style => 'margin: 0pt; padding: 4px; font-size: 1.5em; width: 98%;'  %>
       </div>
       <div class='columns one'>
         <label style='visibility: hidden;'>&nbsp;</label>
-        <%= link_to text_for_button_link(t("add"), :icon => 'add'),
+        <%= link_to text_for_button_link(Spree.t("add"), :icon => 'add'),
           admin_product_relations_url(@product),
           {:id => "add_related_product", :class => 'button', 'data-update' => 'products-table-wrapper'} %>
       </div>

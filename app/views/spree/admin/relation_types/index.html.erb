@@ -3,20 +3,20 @@
 <div class='toolbar'>
   <ul class='actions header-action-links inline-menu'>
     <li>
-      <%= button_link_to t("new_relation_type"), new_object_url, :icon => 'add'  %>
+      <%= button_link_to Spree.t("new_relation_type"), new_object_url, :icon => 'add'  %>
     </li>
   </ul>
   <br class='clear' />
 </div>
 
-<h1><%= t("relation_types") %></h1>
+<h1><%= Spree.t("relation_types") %></h1>
 
 <table class="index">
   <thead>
     <tr data-hook="admin_relation_types_index_headers">
-      <th><%= t("name") %></th>
-      <th><%= t("applies_to") %></th>
-      <th><%= t("description") %></th>
+      <th><%= Spree.t("name") %></th>
+      <th><%= Spree.t("applies_to") %></th>
+      <th><%= Spree.t("description") %></th>
       <th data-hook="admin_relation_types_index_header_actions">&nbsp;</th>
     </tr>
   </thead>

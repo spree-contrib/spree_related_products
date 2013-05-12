@@ -1,11 +1,12 @@
 en:
-  new_relation_type: New Relation Type
-  related_product_discount: Related Product Discount
-  relation_types: Relation Types
-  applies_to: Applies To
-  editing_relation_type: Editing Relation Type
-  related_products: Related Products
-  add_related_product: Add Related Product
-  name_or_sku: Name or SKU
-  manage_relation_types: Manage relation types
-  no_relation_types: You need to configure Relation Types before you can use this feature.
+  spree:
+    new_relation_type: New Relation Type
+    related_product_discount: Related Product Discount
+    relation_types: Relation Types
+    applies_to: Applies To
+    editing_relation_type: Editing Relation Type
+    related_products: Related Products
+    add_related_product: Add Related Product
+    name_or_sku: Name or SKU
+    manage_relation_types: Manage relation types
+    no_relation_types: You need to configure Relation Types before you can use this feature.
