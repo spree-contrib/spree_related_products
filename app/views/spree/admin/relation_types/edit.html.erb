@@ -1,17 +1,17 @@
-<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+<%= render 'spree/admin/shared/configuration_menu' %>
 
 <div data-hook="admin_relation_type_edit_form_header">
-  <h1><%= Spree.t("editing_relation_type") %></h1>
+  <h1><%= Spree.t(:editing_relation_type) %></h1>
 
-  <%= render "spree/shared/error_messages", :target => @relation_type %>
+  <%= render 'spree/shared/error_messages', target: @relation_type %>
 </div>
 
 <div data-hook="admin_relation_type_edit_form">
-  <%= form_for(@relation_type, :url => object_url, :html => { :method => :put }) do |f| %>
-    <%= render :partial => "form", :locals => { :f => f } %>
+  <%= form_for(@relation_type, url: object_url, html: { method: :put }) do |f| %>
+    <%= render 'form', f: f %>
 
     <div data-hook="admin_relation_type_edit_form_buttons">
-      <%= render :partial => "spree/admin/shared/edit_resource_links" %>
+      <%= render 'spree/admin/shared/edit_resource_links' %>
     </div>
   <% end %>
 </div>

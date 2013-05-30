@@ -1,70 +1,66 @@
-<%= render :partial => 'spree/admin/shared/product_sub_menu' %>
-
-<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => "Related Products"} %>
-
-<%= render :partial => "spree/admin/variants/autocomplete", :formats => :js %>
-
+<%= render 'spree/admin/shared/product_sub_menu' %>
+<%= render 'spree/admin/shared/product_tabs', current: 'Related Products' %>
+<%= render "spree/admin/variants/autocomplete", formats: :js %>
 
 <%= csrf_meta_tag %>
 
 <% if @relation_types.empty? %>
-  <%= Spree.t("no_relation_types") %>
+  <%= Spree.t(:no_relation_types) %>
 <% else %>
   <div id="add-line-item">
     <fieldset>
-      <legend><%= Spree.t('add_related_product') %></legend>
-      <div class='columns four'>
-        <%= label_tag :add_variant_name, Spree.t("name_or_sku") %>
-        <%= hidden_field_tag :add_variant_name, "", :class => "variant_autocomplete fullwidth" %>
+      <legend><%= Spree.t(:add_related_product) %></legend>
+      <div class="columns four">
+        <%= label_tag :add_variant_name, Spree.t(:name_or_sku) %>
+        <%= hidden_field_tag :add_variant_name, "", class: 'variant_autocomplete fullwidth' %>
       </div>
-      <div class='columns three'>
-        <%= label_tag :add_type, Spree.t("type") %><br/>
-        <%= select_tag :add_type, options_for_select(@relation_types.map{|rt| [rt.name, rt.id]}), :class => 'select2' %>
+      <div class="columns three">
+        <%= label_tag :add_type, Spree.t(:type) %><br/>
+        <%= select_tag :add_type, options_for_select(@relation_types.map{|rt| [rt.name, rt.id]}), class: 'select2' %>
       </div>
-      <div class='columns three'>
-        <%= label_tag :add_discount, Spree.t("discount_amount") %>
-        <%= text_field_tag :add_discount, 0.0, :style => 'margin: 0pt; padding: 4px; font-size: 1.5em; width: 98%;'  %>
+      <div class="columns three">
+        <%= label_tag :add_discount, Spree.t(:discount_amount) %>
+        <%= text_field_tag :add_discount, 0.0, style: 'margin: 0pt; padding: 4px; font-size: 1.5em; width: 98%;'  %>
       </div>
-      <div class='columns one'>
-        <label style='visibility: hidden;'>&nbsp;</label>
-        <%= link_to text_for_button_link(Spree.t("add"), :icon => 'add'),
+      <div class="columns one">
+        <label style="visibility: hidden;">&nbsp;</label>
+        <%= link_to text_for_button_link(Spree.t(:add), icon: 'add'),
           admin_product_relations_url(@product),
-          {:id => "add_related_product", :class => 'button', 'data-update' => 'products-table-wrapper'} %>
+          {id: 'add_related_product', class: 'button', 'data-update' => 'products-table-wrapper'} %>
       </div>
     </fieldset>
   </div>
 
   <div id="products-table-wrapper">
-    <%= render :partial => "related_products_table", :locals => {:product => @product} %>
+    <%= render 'related_products_table', product: @product %>
   </div>
 
   <%= content_for :head do %>
-    <script type="text/javascript">
+    <script>
       var expand_variants = false;
 
-      $(document).on("click","#add_related_product", function(){
+      $(document).on('click','#add_related_product', function(){
         if($('#add_variant_name').val() == ''){ return false; }
-        update_target = jQuery(this).attr("data-update");
+        update_target = jQuery(this).attr('data-update');
 
         jQuery.ajax({
-          dataType: 'script', 
-          url: this.href, 
-          type: "POST",
+          dataType: 'script',
+          url: this.href,
+          type: 'POST',
           data: {
-            "relation[related_to_type]" : "Product",
-            "relation[related_to_id]": $('#add_variant_name').val(),
-            "relation[relation_type_id]": $('#add_type').val(),
-            "relation[discount_amount]" : $('#add_discount').val()
+            'relation[related_to_type]' : 'Product',
+            'relation[related_to_id]': $('#add_variant_name').val(),
+            'relation[relation_type_id]': $('#add_type').val(),
+            'relation[discount_amount]' : $('#add_discount').val()
           }
         });
         return false;
       });
 
       $(function () {
-        $("#add_variant_name.variant_autocomplete").variantAutocomplete();
+        $('#add_variant_name.variant_autocomplete').variantAutocomplete();
       });
 
     </script>
   <% end %>
-
 <% end %>

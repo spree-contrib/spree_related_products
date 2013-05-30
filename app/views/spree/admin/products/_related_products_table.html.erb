@@ -1,9 +1,9 @@
 <table class="index">
   <thead>
     <tr>
-      <th><%= Spree.t('name') %></th>
-      <th><%= Spree.t('discount_amount') %></th>
-      <th><%= Spree.t('type') %></th>
+      <th><%= Spree.t(:name) %></th>
+      <th><%= Spree.t(:discount_amount) %></th>
+      <th><%= Spree.t(:type) %></th>
       <th></th>
     </tr>
   </thead>
@@ -11,11 +11,11 @@
     <% product.relations.each do |relation| %>
       <tr id="<%= dom_id relation %>">
         <td><%= link_to relation.related_to.name, relation.related_to %></td>
-        <td><%= form_for(relation, url:admin_product_relation_path(relation.relatable, relation)) do |f| %>
-           <%= f.text_field :discount_amount, :size => 4 %> &nbsp; <%= f.submit 'Update' %> <% end %></td>
+        <td><%= form_for(relation, url: admin_product_relation_path(relation.relatable, relation)) do |f| %>
+           <%= f.text_field :discount_amount, size: 4 %> &nbsp; <%= f.submit Spree.t(:update) %> <% end %></td>
         <td><%= relation.relation_type.name %></td>
         <td width="70px">
-          <%= link_to_delete relation, {:url => admin_product_relation_url(relation.relatable, relation)} %>
+          <%= link_to_delete relation, {url: admin_product_relation_url(relation.relatable, relation)} %>
         </td>
       </tr>
     <% end %>

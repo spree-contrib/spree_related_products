@@ -1,9 +1,9 @@
 Spree::Product.class_eval do
-  has_many :relations, :as => :relatable
+  has_many :relations, as: :relatable
 
   # Returns all the Spree::RelationType's which apply_to this class.
   def self.relation_types
-    Spree::RelationType.find_all_by_applies_to(self.to_s, :order => :name)
+    Spree::RelationType.find_all_by_applies_to(self.to_s, order: :name)
   end
 
   # The AREL Relations that will be used to filter the resultant items.
@@ -33,13 +33,13 @@ Spree::Product.class_eval do
   def method_missing(method, *args)
     # Fix for Ruby 1.9
     raise NoMethodError if method == :to_ary
-    
+
     relation_type = nil
     begin
       relation_type =  self.class.relation_types.detect { |rt| rt.name.downcase.gsub(" ", "_").pluralize == method.to_s.downcase }
     rescue ActiveRecord::StatementInvalid => error
-      # This exception is throw if the relation_types table does not exist. 
-      # And this method is getting invoked during the execution of a migration 
+      # This exception is throw if the relation_types table does not exist.
+      # And this method is getting invoked during the execution of a migration
       # from another extension when both are used in a project.
       relation_type = nil
     end
@@ -51,7 +51,7 @@ Spree::Product.class_eval do
     end
   end
 
-  private
+private
 
   # Returns all the Products that are related to this record for the given RelationType.
   #
@@ -59,10 +59,10 @@ Spree::Product.class_eval do
   # them using +Product.relation_filter+ to remove unwanted items.
   def relations_for_relation_type(relation_type)
     # Find all the relations that belong to us for this RelationType
-    related_ids = relations.where(:relation_type_id => relation_type.id).select(:related_to_id).collect(&:related_to_id)
+    related_ids = relations.where(relation_type_id: relation_type.id).select(:related_to_id).collect(&:related_to_id)
 
     # Construct a query for all these records
-    result = self.class.where(:id => related_ids)
+    result = self.class.where(id: related_ids)
 
     # Merge in the relation_filter if it's available
     result = result.merge(self.class.relation_filter.scoped) if relation_filter
@@ -76,5 +76,4 @@ Spree::Product.class_eval do
   def relation_filter
     self.class.relation_filter
   end
-
 end

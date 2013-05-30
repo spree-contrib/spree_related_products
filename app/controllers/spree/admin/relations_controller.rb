@@ -28,7 +28,7 @@ module Spree
         respond_with(@relation)
       end
 
-      private
+    private
 
       def load_data
         @product = Spree::Product.find_by_permalink(params[:product_id])
