@@ -1,19 +1,53 @@
-# Configure Rails Environment
-ENV["RAILS_ENV"] = "test"
-require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+if ENV["COVERAGE"]
+  require 'simplecov'
+  require 'coveralls'
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+    SimpleCov::Formatter::HTMLFormatter,
+    Coveralls::SimpleCov::Formatter
+  ]
+  SimpleCov.start do
+    add_filter '/spec/'
+    add_group 'Controllers', 'app/controllers'
+    add_group 'Overrides', 'app/overrides'
+    add_group 'Models', 'app/models'
+    add_group 'Views', 'app/views'
+    add_group 'Libraries', 'lib'
+  end
+end
+
+ENV['RAILS_ENV'] = 'test'
+
+require File.expand_path('../dummy/config/environment.rb',  __FILE__)
+
 require 'rspec/rails'
+require 'capybara/rspec'
 require 'ffaker'
+require 'database_cleaner'
 
-# Requires supporting ruby files with custom matchers and macros, etc,
-# in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |f| require f }
 
-# Requires factories defined in spree_core
 require 'spree/testing_support/factories'
+require 'spree/testing_support/url_helpers'
 
 RSpec.configure do |config|
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
+  config.include Capybara::DSL, type: :request
+  config.include FactoryGirl::Syntax::Methods
+  config.include Spree::TestingSupport::UrlHelpers
+
+  config.mock_with :rspec
+  config.use_transactional_fixtures = false
+  config.fail_fast = ENV['FAIL_FAST'] || false
+
+  config.before do
+    if example.metadata[:js]
+      DatabaseCleaner.strategy = :truncation
+    else
+      DatabaseCleaner.strategy = :transaction
+    end
+    DatabaseCleaner.start
+  end
+
+  config.after do
+    DatabaseCleaner.clean
+  end
 end
