@@ -1,3 +1,4 @@
+require 'spree_backend'
 require 'spree_core'
 
 module SpreeRelatedProducts

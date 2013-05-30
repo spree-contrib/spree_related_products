@@ -1,3 +1,3 @@
-source 'http://rubygems.org'
-gem 'spree', github: 'spree/spree'
+source 'https://rubygems.org'
+# gem 'spree', github: 'spree/spree'
 gemspec
