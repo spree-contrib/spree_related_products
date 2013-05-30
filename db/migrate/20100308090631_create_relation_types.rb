@@ -1,5 +1,5 @@
 class CreateRelationTypes < ActiveRecord::Migration
-  def self.up
+  def up
     create_table :relation_types do |t|
       t.string :name
       t.text :description
@@ -8,7 +8,7 @@ class CreateRelationTypes < ActiveRecord::Migration
     end
   end
 
-  def self.down
+  def down
     drop_table :relation_types
   end
 end
