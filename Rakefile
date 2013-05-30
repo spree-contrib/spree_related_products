@@ -1,17 +1,30 @@
-require 'bundler'
-Bundler::GemHelper.install_tasks
-Bundler.setup
-
+require 'rubygems'
+require 'rake'
+require 'rake/testtask'
+require 'rake/packagetask'
+require 'rubygems/package_task'
 require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new
-
 require 'spree/testing_support/common_rake'
 
-desc "Default Task"
-task :default => [:spec]
+RSpec::Core::RakeTask.new
 
-desc "Generates a dummy app for testing"
+task default: :spec
+
+spec = eval(File.read('spree_related_products.gemspec'))
+
+Gem::PackageTask.new(spec) do |p|
+  p.gem_spec = spec
+end
+
+desc 'Generates a dummy app for testing'
 task :test_app do
   ENV['LIB_NAME'] = 'spree_related_products'
   Rake::Task['common:test_app'].invoke
+end
+
+namespace :test_app do
+  desc 'Rebuild test database'
+  task :rebuild do
+    system 'cd spec/dummy && rake db:drop db:migrate RAILS_ENV=test'
+  end
 end
