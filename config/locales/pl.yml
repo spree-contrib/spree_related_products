@@ -1,7 +1,6 @@
 pl:
   spree:
     new_relation_type: Nowy typ relacji
-    discount_amount: Kwota zniżki
     related_product_discount: Zniżka na powiązany produkt
     relation_types: Typy relacji
     applies_to: Ma zastosowanie do
