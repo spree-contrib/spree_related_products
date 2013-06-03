@@ -3,7 +3,7 @@ module Spree
     preference :item_total_threshold, :decimal, :default => 5
 
     def self.description
-      I18n.t("related_product_discount")
+      Spree.t("related_product_discount")
     end
 
     def compute(object)
