@@ -8,7 +8,7 @@ This extension provides a generic way for you to define different types of relat
 
 You can manage RelationTypes via the admin configuration menu, and you can maintain product relationships via __Related Products__ tab on the edit product UI.
 
-### Possible uses
+## Possible uses
 
 * Accessories
 * Cross Sells
@@ -17,7 +17,7 @@ You can manage RelationTypes via the admin configuration menu, and you can maint
 * Replacement Products
 * Warranty & Support Products
 
-### Relation Types
+## Relation Types
 
 When you create a RelationType you can access that set of related products by referencing the relation_type name, see below for an example:
 ```ruby
@@ -40,29 +40,47 @@ You can optionally specify a discount amount to be applied if a customer purchas
 
 Note: In order for the coupon to be automatically applied, you must create a promotion leaving the __code__ value empty, and adding an Action of type : __RelatedProductDiscount__  (blank codes are required for coupons to be automatically applied).
 
-### Installation
-
-**For Spree 2.0**
+## Installation
 
 Add to `Gemfile`:
 ```ruby
-gem 'spree_related_products', github: 'spree/spree_related_products', branch: '2-0-stable'
+gem 'spree_related_products', github: 'spree/spree_related_products'
 ```
 
 Run:
-```
-$ bundle
-$ bundle exec rails g spree_related_products:install
+```sh
+$ bundle install
+$ rails g spree_related_products:install
 ```
 
-### Contributing
+## Contributing
+
+In the spirit of [free software][1], **everyone** is encouraged to help improve this project.
+
+Here are some ways *you* can contribute:
+
+* by using prerelease versions
+* by reporting [bugs][2]
+* by suggesting new features
+* by writing or editing documentation
+* by writing specifications
+* by writing code (*no patch is too small*: fix typos, add comments, clean up inconsistent whitespace)
+* by refactoring code
+* by resolving [issues][2]
+* by reviewing patches
+
+Starting point:
 
 * Fork the repo
 * Clone your repo
-* Run `bundle`
+* Run `bundle install`
 * Run `bundle exec rake test_app` to create the test application in `spec/test_app`
 * Make your changes
-* Ensure specs pass by running `bundle exec rake`
+* Ensure specs pass by running `bundle exec rspec spec`
 * Submit your pull request
 
-Copyright (c) 2013 Brian Quinn, released under the New BSD License
+Copyright (c) 2013 Brian Quinn, released under the [New BSD License][3]
+
+[1]: http://www.fsf.org/licensing/essays/free-sw.html
+[2]: https://github.com/spree/spree_related_products/issues
+[3]: https://github.com/spree/spree_related_products/tree/master/LICENSE
