@@ -62,6 +62,7 @@ Here are some ways *you* can contribute:
 * by using prerelease versions
 * by reporting [bugs][2]
 * by suggesting new features
+* by writing [translations][4]
 * by writing or editing documentation
 * by writing specifications
 * by writing code (*no patch is too small*: fix typos, add comments, clean up inconsistent whitespace)
@@ -84,3 +85,4 @@ Copyright (c) 2013 Brian Quinn, released under the [New BSD License][3]
 [1]: http://www.fsf.org/licensing/essays/free-sw.html
 [2]: https://github.com/spree/spree_related_products/issues
 [3]: https://github.com/spree/spree_related_products/tree/master/LICENSE
+[4]: http://www.localeapp.com/projects/4943
