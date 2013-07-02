@@ -39,11 +39,11 @@
     <script>
       var expand_variants = false;
 
-      $(document).on('click','#add_related_product', function(){
-        if($('#add_variant_name').val() == ''){ return false; }
-        update_target = jQuery(this).attr('data-update');
+      $(document).on('click','#add_related_product', function() {
+        if ($('#add_variant_name').val() == '') { return false; }
+        update_target = $(this).prop('data-update');
 
-        jQuery.ajax({
+        $.ajax({
           dataType: 'script',
           url: this.href,
           type: 'POST',
@@ -60,7 +60,6 @@
       $(function () {
         $('#add_variant_name.variant_autocomplete').variantAutocomplete();
       });
-
     </script>
   <% end %>
 <% end %>
