@@ -51,7 +51,7 @@ Spree::Product.class_eval do
     end
   end
 
-private
+  private
 
   # Returns all the Products that are related to this record for the given RelationType.
   #

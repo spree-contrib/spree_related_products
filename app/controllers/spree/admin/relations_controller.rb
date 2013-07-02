@@ -1,12 +1,12 @@
 module Spree
   module Admin
-    class RelationsController < BaseController
-      before_filter :load_data, :only => [:create, :destroy]
+    class RelationsController < Spree::Admin::BaseController
+      before_filter :load_data, only: [:create, :destroy]
 
       respond_to :js, :html
 
       def create
-        @relation = Relation.new(params[:relation])
+        @relation = Spree::Relation.new(params[:relation])
         @relation.relatable = @product
         @relation.related_to = Spree::Variant.find(params[:relation][:related_to_id]).product
         @relation.save
@@ -15,20 +15,20 @@ module Spree
       end
 
       def update
-        @relation = Relation.find(params[:id])
+        @relation = Spree::Relation.find(params[:id])
         @relation.update_attribute :discount_amount, params[:relation][:discount_amount] || 0
 
-        redirect_to( related_admin_product_url(@relation.relatable) )
+        redirect_to(related_admin_product_url(@relation.relatable))
       end
 
       def destroy
-        @relation = Relation.find(params[:id])
+        @relation = Spree::Relation.find(params[:id])
         @relation.destroy
 
         respond_with(@relation)
       end
 
-    private
+      private
 
       def load_data
         @product = Spree::Product.find_by_permalink(params[:product_id])

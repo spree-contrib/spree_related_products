@@ -1,6 +1,6 @@
 module Spree
   module Admin
-    class RelationTypesController < ResourceController
+    class RelationTypesController < Spree::Admin::ResourceController
     end
   end
 end

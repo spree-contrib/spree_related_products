@@ -40,6 +40,5 @@ module Spree
     def eligible?(order)
       order.line_items.any? { |line_item| Spree::Relation.exists?(["discount_amount <> 0.0 AND relatable_type = ? AND relatable_id = ?", "Spree::Product", line_item.variant.product.id])}
     end
-
   end
 end

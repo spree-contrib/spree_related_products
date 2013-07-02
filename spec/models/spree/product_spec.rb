@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Spree::Product do
-
   context "class" do
     describe ".relation_types" do
       it "should return all the RelationTypes in use for this Product" do
