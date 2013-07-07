@@ -8,7 +8,7 @@
 
 <div data-hook="admin_relation_type_new_form" >
   <%= form_for(:relation_type, url: collection_url) do |f| %>
-    <%= render 'form' f: f %>
+    <%= render 'form', f: f %>
 
     <div data-hook="admin_relation_type_new_form_buttons">
       <%= render 'spree/admin/shared/new_resource_links' %>

@@ -3,7 +3,7 @@ cs:
     new_relation_type: Nový typ relace
     related_product_discount: Sleva pro související zboží
     relation_types: Typy vztahů
-    applies_to: Platí pro
+    applies_to: Applies To
     editing_relation_type: Editace vztahového typu
     related_products: Související zboží
     add_related_product: Nové související zboží
