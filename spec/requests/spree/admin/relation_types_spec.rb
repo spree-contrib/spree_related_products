@@ -36,13 +36,32 @@ describe "Manage Relation Types", :type => "controller" do
       expect(current_path).to eql(spree.admin_relation_types_path)
     end
 
-    it "should show validation errors", :js => true do
+    it "should show validation errors with blank name" do
       click_link "New Relation Type"
 
       fill_in "Name", :with => ""
       click_button "Create"
-      
+
       page.should have_content("Name can't be blank")
+    end
+
+    it "should show validation errors with blank applies_to" do
+      click_link "New Relation Type"
+
+      fill_in "Name", :with => "Test"
+      fill_in "Applies To", :with => ""
+      click_button "Create"
+
+      page.should have_content("Applies To can't be blank")
+    end
+
+    it "should not create duplicate relation type" do
+      @relation_type_first = Spree::RelationType.create(name: "My Test Type", applies_to: "Spree::Product")
+      @relation_type_first.save()
+
+      @relation_type_second = Spree::RelationType.create(name: "My Test Type", applies_to: "Spree::Product")
+      @relation_type_second.should_not be_valid
+    
     end
 
   end
