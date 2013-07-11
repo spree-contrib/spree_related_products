@@ -20,11 +20,11 @@ describe "Manage Relation Types", :type => "controller" do
   end
 
   context "create" do
+
     it "should be able to create a new relation type" do
 
-      # create(:relation_type, :name => 'test', :applies_to => "Spree::Product")
-      
       click_link "New Relation Type"
+      expect(current_path).to eql(spree.new_admin_relation_type_path)
 
       fill_in "Name", :with => "bullock cart"
       fill_in "Applies To", :with => "Spree:Products"
@@ -38,6 +38,7 @@ describe "Manage Relation Types", :type => "controller" do
 
     it "should show validation errors with blank name" do
       click_link "New Relation Type"
+      expect(current_path).to eql(spree.new_admin_relation_type_path)
 
       fill_in "Name", :with => ""
       click_button "Create"
@@ -47,6 +48,7 @@ describe "Manage Relation Types", :type => "controller" do
 
     it "should show validation errors with blank applies_to" do
       click_link "New Relation Type"
+      expect(current_path).to eql(spree.new_admin_relation_type_path)
 
       fill_in "Name", :with => "Test"
       fill_in "Applies To", :with => ""
@@ -67,6 +69,7 @@ describe "Manage Relation Types", :type => "controller" do
   end
 
   context "show" do
+
     it "should display existing relation types" do
       within_row(1) do
         column_text(1).should == "Benz"
@@ -77,8 +80,10 @@ describe "Manage Relation Types", :type => "controller" do
   end
   
   context "edit" do
+    
     before(:each) do
       within_row(1) { click_icon :edit }
+      expect(current_path).to eql(spree.edit_admin_relation_type_path(1))
     end
 
     it "should allow an admin to edit an existing relation type" do
@@ -93,5 +98,4 @@ describe "Manage Relation Types", :type => "controller" do
     #   page.should have_content("Name can't be blank")
     # end
   end
-
 end
