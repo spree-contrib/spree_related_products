@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.author       = 'Brian Quinn'
   s.email        = 'brian@railsdog.com'
-  s.homepage     = 'http://spreecommerce.com'
+  s.homepage     = 'https://github.com/spree/spree_related_products'
   s.license      = %q{BSD-3}
 
   s.rubyforge_project = 'spree_related_products'
