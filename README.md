@@ -84,5 +84,5 @@ Copyright (c) 2013 Brian Quinn, released under the [New BSD License][3]
 
 [1]: http://www.fsf.org/licensing/essays/free-sw.html
 [2]: https://github.com/spree/spree_related_products/issues
-[3]: https://github.com/spree/spree_related_products/tree/master/LICENSE
+[3]: https://github.com/spree/spree_related_products/tree/master/LICENSE.md
 [4]: http://www.localeapp.com/projects/4943
