@@ -7,5 +7,6 @@ de:
     editing_relation_type: Verwandschaftstyp bearbeiten
     related_products: Verwandte Produkte
     add_related_product: Verwandtes Produkt hinzufügen
+    name_or_sku: Namen oder SKU
     manage_relation_types: Verwandschaftstypen konfigurieren
     no_relation_types: "Sie müssen Verwandschaftstypen konfigurieren, bevor Sie diese Funktion nutzen können."

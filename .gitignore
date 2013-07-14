@@ -1,7 +1,12 @@
-*.swp
+\#*
+*~
+.#*
 .DS_Store
-.rvmrc
+.bundle
+coverage
 Gemfile.lock
+tmp
 pkg
 spec/dummy
-*~
+.rvmrc
+.localeapp
