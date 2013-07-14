@@ -6,7 +6,7 @@ module Spree
       respond_to :js, :html
 
       def create
-        @relation = Spree::Relation.new(params[:relation])
+        @relation = Spree::Relation.new
         @relation.relatable = @product
         @relation.related_to = Spree::Variant.find(params[:relation][:related_to_id]).product
         @relation.save
@@ -25,7 +25,9 @@ module Spree
         @relation = Spree::Relation.find(params[:id])
         @relation.destroy
 
-        respond_with(@relation)
+        respond_to do |format|
+          format.js  { render_js_for_destroy }
+        end
       end
 
       private

@@ -8,6 +8,11 @@ describe Spree::Admin::ProductsController do
 
   before { controller.stub spree_current_user: user }
 
+  after { Spree::Admin::ProductsController.clear_overrides! }
+
   context "#related" do
+    it "respond to model_class as Spree::Relation" do
+      controller.send(:model_class).should eql(Spree::Product)
+    end
   end
 end
