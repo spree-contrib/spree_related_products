@@ -34,16 +34,7 @@ Spree::Product.class_eval do
     # Fix for Ruby 1.9
     raise NoMethodError if method == :to_ary
     
-    relation_type = nil
-    begin
-      relation_type =  self.class.relation_types.detect { |rt| rt.name.downcase.gsub(" ", "_").pluralize == method.to_s.downcase }
-    rescue ActiveRecord::StatementInvalid => error
-      # This exception is throw if the relation_types table does not exist. 
-      # And this method is getting invoked during the execution of a migration 
-      # from another extension when both are used in a project.
-      relation_type = nil
-    end
-
+    relation_type = find_relation_type(method)
     if relation_type.nil?
       super
     else
@@ -51,7 +42,23 @@ Spree::Product.class_eval do
     end
   end
 
+  def has_related_products?(relation_method)
+    find_relation_type(relation_method).present?
+  end
+
   private
+
+  def find_relation_type(relation_name)
+    begin
+      self.class.relation_types.detect { |rt| rt.name.downcase.gsub(" ", "_").pluralize == relation_name.to_s.downcase }
+    rescue ActiveRecord::StatementInvalid => error
+      # This exception is throw if the relation_types table does not exist. 
+      # And this method is getting invoked during the execution of a migration 
+      # from another extension when both are used in a project.
+      nil
+    end
+     
+  end
 
   # Returns all the Products that are related to this record for the given RelationType.
   #

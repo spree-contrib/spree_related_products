@@ -58,6 +58,14 @@ describe Spree::Product do
         @product.related_products.should include(@other)
       end
 
+      it "should recognize the method with has_related_products?(method)" do
+        @product.has_related_products?('related_products').should be_true
+      end
+
+      it "should not recognize non-existent methods with has_related_products?(method)" do
+        @product.has_related_products?('unrelated_products').should_not be_true
+      end
+
       it "should be the pluralised form of the RelationType name" do
         @relation_type.update_attributes(:name => 'Related Product')
         @product.related_products.should include(@other)
