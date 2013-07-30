@@ -1,5 +1,5 @@
 Spree::Product.class_eval do
-  has_many :relations, :as => :relatable
+  has_many :relations, :as => :relatable, :order => :position
 
   # Returns all the Spree::RelationType's which apply_to this class.
   def self.relation_types

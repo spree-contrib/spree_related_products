@@ -5,5 +5,5 @@ class Spree::Relation < ActiveRecord::Base
 
   validates :relation_type, :relatable, :related_to, :presence => true
   
-  attr_accessible :related_to, :relation_type, :relatable, :related_to_id, :discount_amount, :relation_type_id, :related_to_type
+  attr_accessible :related_to, :relation_type, :relatable, :related_to_id, :discount_amount, :relation_type_id, :related_to_type, :position
 end

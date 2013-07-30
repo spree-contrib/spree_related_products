@@ -1,7 +1,7 @@
-<table class="index">
+<table class="index sortable" data-hook="products_table"  data-sortable-link="<%= update_positions_admin_product_relations_url(@product) %>">
   <thead>
-    <tr>
-      <th><%= Spree.t('name') %></th>
+    <tr data-hook="products_header">
+      <th colspan="2"><%= Spree.t('name') %></th>
       <th><%= Spree.t('discount_amount') %></th>
       <th><%= Spree.t('type') %></th>
       <th></th>
@@ -9,7 +9,11 @@
   </thead>
   <tbody>
     <% product.relations.each do |relation| %>
-      <tr id="<%= dom_id relation %>">
+
+      <tr id="<%= spree_dom_id relation %>" data-hook="products_row">
+        <td class="no-border">
+          <span class="handle"></span>
+        </td>
         <td><%= link_to relation.related_to.name, relation.related_to %></td>
         <td><%= form_for(relation, url:admin_product_relation_path(relation.relatable, relation)) do |f| %>
            <%= f.text_field :discount_amount, :size => 4 %> &nbsp; <%= f.submit 'Update' %> <% end %></td>
