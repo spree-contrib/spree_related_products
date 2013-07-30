@@ -24,4 +24,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'ffaker'
   s.add_development_dependency 'rspec-rails',  '~> 2.13.0'
   s.add_development_dependency 'sqlite3'
+
 end

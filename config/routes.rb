@@ -5,9 +5,13 @@ Spree::Core::Engine.routes.prepend do
     resources :relation_types
     resources :products do
       get :related, :on => :member
-      resources :relations
+      resources :relations do
+      	collection do
+        	post :update_positions
+    	end
+      end
     end
-
+      
   end
 
 end
