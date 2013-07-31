@@ -1,7 +1,5 @@
 language: ruby
 rvm:
-  - 1.8.7
-  - 1.9.2
   - 1.9.3
   - 2.0.0
 bundler_args: --without development production --quiet
@@ -10,9 +8,9 @@ before_script:
 script: "DISPLAY=:99.0 bundle exec rspec spec"
 notifications:
   email:
+    - ryan@spreecommerce.com
     - jdyer@spreecommerce.com
     - brian@spreecommerce.com
-  irc: "irc.freenode.org#spree"
 matrix:
   allow_failures:
     - rvm: 2.0.0
