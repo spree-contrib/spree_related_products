@@ -11,9 +11,7 @@ notifications:
     - ryan@spreecommerce.com
     - jdyer@spreecommerce.com
     - brian@spreecommerce.com
-matrix:
-  allow_failures:
-    - rvm: 2.0.0
+  irc: "irc.freenode.org#spree"
 branches:
   only:
     - master
