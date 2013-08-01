@@ -35,7 +35,8 @@ module Spree
         @relation = Relation.find(params[:id])
         @relation.destroy
 
-        respond_with(@relation)
+        #respond_with(@relation)
+        redirect_to :back
       end
 
       private
