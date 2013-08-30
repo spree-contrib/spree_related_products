@@ -1,9 +1,7 @@
-Spree::Core::Engine.routes.prepend do
-
+Spree::Core::Engine.routes.draw do
   namespace :admin do
-
     resources :relation_types
-    resources :products do
+    resources :products, only: [] do
       get :related, :on => :member
       resources :relations do
       	collection do
@@ -11,7 +9,5 @@ Spree::Core::Engine.routes.prepend do
     	end
       end
     end
-      
   end
-
 end
