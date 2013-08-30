@@ -1,13 +1,9 @@
-Spree::Core::Engine.routes.append do
-
+Spree::Core::Engine.routes.draw do
   namespace :admin do
-
     resources :relation_types
-    resources :products do
+    resources :products, only: [] do
       get :related, :on => :member
       resources :relations
     end
-
   end
-
 end
