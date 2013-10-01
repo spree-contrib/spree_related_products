@@ -6,9 +6,9 @@ module Spree
       respond_to :js, :html
 
       def create
-        @relation = Relation.new(params[:relation])
+        @relation = Relation.new(relation_params)
         @relation.relatable = @product
-        @relation.related_to = Spree::Variant.find(params[:relation][:related_to_id]).product
+        @relation.related_to = Spree::Variant.find(relation_params[:related_to_id]).product
         @relation.save
 
         respond_with(@relation)
@@ -16,7 +16,7 @@ module Spree
 
       def update
         @relation = Relation.find(params[:id])
-        @relation.update_attribute :discount_amount, params[:relation][:discount_amount] || 0
+        @relation.update_attribute :discount_amount, relation_params[:discount_amount] || 0
 
         redirect_to( related_admin_product_url(@relation.relatable) )
       end
@@ -39,6 +39,10 @@ module Spree
       end
 
       private
+
+      def relation_params
+        params.require(:relation).permit(:related_to, :relation_type, :relatable, :related_to_id, :discount_amount, :relation_type_id, :related_to_type, :position)
+      end
 
       def load_data
         @product = Spree::Product.find_by_permalink(params[:product_id])
