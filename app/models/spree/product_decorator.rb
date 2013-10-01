@@ -66,7 +66,7 @@ Spree::Product.class_eval do
   # them using +Product.relation_filter+ to remove unwanted items.
   def relations_for_relation_type(relation_type)
     # Find all the relations that belong to us for this RelationType, ordered by position
-    related_ids = relations.where(:relation_type_id => relation_type.id).order(:position).select(:related_to_id).collect(&:related_to_id)
+    related_ids = relations.where(:relation_type_id => relation_type.id).order(:position).pluck(:related_to_id)
 
     # Construct a query for all these records
     result = self.class.where(:id => related_ids)
@@ -75,7 +75,7 @@ Spree::Product.class_eval do
     result = result.merge(self.class.relation_filter.scoped) if relation_filter
 
     # make sure results are in same order as related_ids array  (position order) 
-    result = related_ids.collect {|id| result.detect {|x| x.id == id} }
+    result = related_ids.collect {|id| result.detect {|x| x.id == id} } if result.present?
     
     result
   end

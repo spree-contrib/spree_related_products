@@ -115,10 +115,10 @@ describe Spree::Product do
           relation_filter = Spree::Product.relation_filter
           Spree::Product.should_receive(:relation_filter).at_least(:once).and_return(relation_filter.includes(:master).where('spree_variants.cost_price > 20'))
 
-          @other.master.update_attributes({:cost_price => 10}, :without_protection => true)
+          @other.master.update_attributes({:cost_price => 10})
 
           other2 = FactoryGirl.create(:product)
-          other2.master.update_attributes({:cost_price => 30}, :without_protection => true)
+          other2.master.update_attributes({:cost_price => 30})
           relation = Spree::Relation.create!(:relatable => @product, :related_to => other2, :relation_type => @relation_type)
 
           results = @product.related_products
