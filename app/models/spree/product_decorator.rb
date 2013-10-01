@@ -75,7 +75,7 @@ Spree::Product.class_eval do
     result = result.merge(self.class.relation_filter.scoped) if relation_filter
 
     # make sure results are in same order as related_ids array  (position order) 
-    result = related_ids.collect {|id| result.detect {|x| x.id == id} }
+    result = related_ids.collect {|id| result.detect {|x| x.id == id} } if result.present?
     
     result
   end
