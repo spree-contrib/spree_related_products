@@ -10,7 +10,7 @@
 
 <%= render "spree/shared/error_messages", :target => @relation_type %>
 
-<%= form_for [:admin, @relation_type] do |f| %>
+<%= form_for :relation_type, :url => collection_url do |f| %>
   <fieldset class="no-border-top">
     <%= render :partial => 'form', :locals => { :f => f } %>
     <%= render :partial => 'spree/admin/shared/new_resource_links' %>
