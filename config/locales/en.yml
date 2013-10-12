@@ -1,5 +1,6 @@
 en:
   spree:
+    back_to_relation_types_list: Back To Relation Types List
     new_relation_type: New Relation Type
     related_product_discount: Related Product Discount
     relation_types: Relation Types
