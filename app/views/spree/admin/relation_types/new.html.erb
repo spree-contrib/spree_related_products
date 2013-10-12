@@ -8,7 +8,7 @@
   <li><%= link_to_with_icon 'icon-arrow-left', Spree.t(:back_to_relation_types_list), admin_relation_types_path, :class => 'button' %></li>
 <% end %>
 
-<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @relation_types } %>
+<%= render "spree/shared/error_messages", :target => @relation_type %>
 
 <%= form_for [:admin, @relation_type] do |f| %>
   <fieldset class="no-border-top">
