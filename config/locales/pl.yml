@@ -1,5 +1,6 @@
 pl:
   spree:
+    back_to_relation_types_list: Powrót do listy typów relacji
     new_relation_type: Nowy typ relacji
     discount_amount: Kwota zniżki
     related_product_discount: Zniżka na powiązany produkt
