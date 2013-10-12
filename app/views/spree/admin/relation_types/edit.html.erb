@@ -10,7 +10,7 @@
   </li>
 <% end %>
 
-<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @relation_type } %>
+<%= render "spree/shared/error_messages", :target => @relation_type %>
 
 <%= form_for [:admin, @relation_type] do |f| %>
   <fieldset class="no-border-top">
