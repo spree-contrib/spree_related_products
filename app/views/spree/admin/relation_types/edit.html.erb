@@ -1,17 +1,21 @@
 <%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
-<div data-hook="admin_relation_type_edit_form_header">
-  <h1><%= Spree.t("editing_relation_type") %></h1>
+<% content_for :page_title do %>
+  <%= Spree.t(:editing_relation_type) %>
+<% end %>
 
-  <%= render "spree/shared/error_messages", :target => @relation_type %>
-</div>
+<% content_for :page_actions do %>
+  <li>
+    <%= button_link_to Spree.t(:back_to_relation_types_list), spree.admin_relation_types_path, :icon => 'icon-arrow-left' %>
+  </li>
+<% end %>
 
-<div data-hook="admin_relation_type_edit_form">
-  <%= form_for(@relation_type, :url => object_url, :html => { :method => :put }) do |f| %>
-    <%= render :partial => "form", :locals => { :f => f } %>
+<%= render "spree/shared/error_messages", :target => @relation_type %>
 
-    <div data-hook="admin_relation_type_edit_form_buttons">
-      <%= render :partial => "spree/admin/shared/edit_resource_links" %>
-    </div>
-  <% end %>
-</div>
+<%= form_for [:admin, @relation_type] do |f| %>
+  <fieldset class="no-border-top">
+    <%= render :partial => 'form', :locals => { :f => f } %>
+    <div class="clear"></div>
+    <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
+  </fieldset>
+<% end %>

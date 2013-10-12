@@ -11,7 +11,7 @@
 <% else %>
   <div id="add-line-item">
     <fieldset>
-      <legend><%= Spree.t('add_related_product') %></legend>
+      <legend align="center"><%= Spree.t('add_related_product') %></legend>
       <div id='related_product_name' class='columns four'>
         <%= label_tag :add_variant_name, Spree.t("name_or_sku") %>
         <%= hidden_field_tag :add_variant_name, "", :class => "variant_autocomplete fullwidth" %>
