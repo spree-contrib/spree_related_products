@@ -9,4 +9,4 @@ pt-BR:
     add_related_product: Adicionar produto relacionado
     name_or_sku: Nome ou SKU
     manage_relation_types: Gerenciar tipos de relacionamento
-    no_relation_types: Você precisa configurar os tipos de relacionamento antesd e utilizar esta funcionalidade.
+    no_relation_types: Você precisa configurar os tipos de relacionamento antes de utilizar esta funcionalidade.
