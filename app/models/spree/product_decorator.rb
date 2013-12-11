@@ -1,9 +1,9 @@
 Spree::Product.class_eval do
-  has_many :relations, :as => :relatable, :order => :position
+  has_many :relations, -> { order(:position) }, :as => :relatable
 
   # Returns all the Spree::RelationType's which apply_to this class.
   def self.relation_types
-    Spree::RelationType.find_all_by_applies_to(self.to_s, :order => :name)
+    Spree::RelationType.where(:applies_to => self.to_s).order(:name)
   end
 
   # The AREL Relations that will be used to filter the resultant items.
@@ -33,7 +33,7 @@ Spree::Product.class_eval do
   def method_missing(method, *args)
     # Fix for Ruby 1.9
     raise NoMethodError if method == :to_ary
-    
+
     relation_type = find_relation_type(method)
     if relation_type.nil?
       super
@@ -52,12 +52,12 @@ Spree::Product.class_eval do
     begin
       self.class.relation_types.detect { |rt| rt.name.downcase.gsub(" ", "_").pluralize == relation_name.to_s.downcase }
     rescue ActiveRecord::StatementInvalid => error
-      # This exception is throw if the relation_types table does not exist. 
-      # And this method is getting invoked during the execution of a migration 
+      # This exception is throw if the relation_types table does not exist.
+      # And this method is getting invoked during the execution of a migration
       # from another extension when both are used in a project.
       nil
     end
-     
+
   end
 
   # Returns all the Products that are related to this record for the given RelationType.
@@ -72,11 +72,11 @@ Spree::Product.class_eval do
     result = self.class.where(:id => related_ids)
 
     # Merge in the relation_filter if it's available
-    result = result.merge(self.class.relation_filter.scoped) if relation_filter
+    result = result.merge(self.class.relation_filter.all) if relation_filter
 
-    # make sure results are in same order as related_ids array  (position order) 
+    # make sure results are in same order as related_ids array  (position order)
     result = related_ids.collect {|id| result.detect {|x| x.id == id} } if result.present?
-    
+
     result
   end
 
