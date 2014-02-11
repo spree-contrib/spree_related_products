@@ -1,0 +1,14 @@
+sv:
+  spree:
+    back_to_relation_types_list: Tillbaks till relationstyplistan
+    new_relation_type: Ny typ av relation
+    related_product_discount: Relaterad produkt rabatt
+    relation_types: Relationstyper
+    applies_to: Gäller
+    editing_relation_type: Redigera relationstyp
+    related_products: Relaterade produkter
+    add_related_product: Lägg till relaterad produkt
+    name_or_sku: Namn eller SKU
+    manage_relation_types: Hantera relationstyper
+    no_relation_types: Du måste konfigurera relationstyper innan du kan använda den här funktionen.
+    successfully_created_relation: Relationen har skapats.

@@ -25,7 +25,7 @@ module Spree
         params[:positions].each do |id, index|
           model_class.where(:id => id).update_all(:position => index)
         end
-    
+
         respond_to do |format|
           format.js  { render :text => 'Ok' }
         end
@@ -45,7 +45,7 @@ module Spree
       end
 
       def load_data
-        @product = Spree::Product.find_by_permalink(params[:product_id])
+        @product = Spree::Product.find_by_slug(params[:product_id])
       end
 
       def model_class

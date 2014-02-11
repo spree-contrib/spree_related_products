@@ -9,5 +9,5 @@ en:
     related_products: Related Products
     add_related_product: Add Related Product
     name_or_sku: Name or SKU
-    manage_relation_types: Manage relation types
+    manage_relation_types: Manage Relation Types
     no_relation_types: You need to configure Relation Types before you can use this feature.

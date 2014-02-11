@@ -1,44 +1,43 @@
 require 'spec_helper'
 
 describe Spree::Product do
-
-  context "class" do
-    describe ".relation_types" do
-      it "should return all the RelationTypes in use for this Product" do
-        relation_type = Spree::RelationType.create!(:name => "Related Products", :applies_to => "Spree::Product")
+  context 'class' do
+    describe '.relation_types' do
+      it 'return all the RelationTypes in use for this Product' do
+        relation_type = create(:relation_type)
         Spree::Product.relation_types.should include(relation_type)
       end
     end
   end
 
-  context "instance" do
-    before(:each) do
-      @product = FactoryGirl.create(:product)
-      @relation_type = Spree::RelationType.create(:name => "Related Products", :applies_to => "Spree::Product")
+  context 'relations' do
+    it { should have_many(:relations) }
+  end
+
+  context 'instance' do
+    let(:other1) { create(:product) }
+    let(:other2) { create(:product) }
+
+    before do
+      @product = create(:product)
+      @relation_type = create(:relation_type, name: 'Related Products')
     end
 
-    describe ".relations" do
-      it "has many relations" do
-        @product.save!
-        other1 = FactoryGirl.create(:product)
-        other2 = FactoryGirl.create(:product)
-
-        relation1 = Spree::Relation.create!(:relatable => @product, :related_to => other1, :relation_type => @relation_type)
-        relation2 = Spree::Relation.create!(:relatable => @product, :related_to => other2, :relation_type => @relation_type)
+    describe '.relations' do
+      it 'has many relations' do
+        relation1 = create(:relation, relatable: @product, related_to: other1, relation_type: @relation_type)
+        relation2 = create(:relation, relatable: @product, related_to: other2, relation_type: @relation_type)
 
         @product.reload
         @product.relations.should include(relation1)
         @product.relations.should include(relation2)
       end
 
-      it "has many relations for different RelationTypes" do
-        @product.save!
-        other = FactoryGirl.create(:product)#valid_product!
+      it 'has many relations for different RelationTypes' do
+        other_relation_type = Spree::RelationType.new(name: 'Recommended Products')
 
-        other_relation_type = Spree::RelationType.new(:name => "Recommended Products")
-
-        relation1 = Spree::Relation.create!(:relatable => @product, :related_to => other, :relation_type => @relation_type)
-        relation2 = Spree::Relation.create!(:relatable => @product, :related_to => other, :relation_type => other_relation_type)
+        relation1 = create(:relation, relatable: @product, related_to: other1, relation_type: @relation_type)
+        relation2 = create(:relation, relatable: @product, related_to: other1, relation_type: other_relation_type)
 
         @product.reload
         @product.relations.should include(relation1)
@@ -46,90 +45,79 @@ describe Spree::Product do
       end
     end
 
-    describe "RelationType finders" do
-      before(:each) do
-        @product.save!
-        @other = FactoryGirl.create(:product)
-        @relation = Spree::Relation.create!(:relatable => @product, :related_to => @other, :relation_type => @relation_type)
+    describe 'RelationType finders' do
+      before do
+        @relation = create(:relation, relatable: @product, related_to: other1, relation_type: @relation_type)
         @product.reload
       end
 
-      it "should return the relevant relations" do
-        @product.related_products.should include(@other)
+      it 'return the relevant relations' do
+        @product.related_products.should include(other1)
       end
 
-      it "should recognize the method with has_related_products?(method)" do
+      it 'recognize the method with has_related_products?(method)' do
         @product.has_related_products?('related_products').should be_true
       end
 
-      it "should not recognize non-existent methods with has_related_products?(method)" do
+      it 'not recognize non-existent methods with has_related_products?(method)' do
         @product.has_related_products?('unrelated_products').should_not be_true
       end
 
-      it "should be the pluralised form of the RelationType name" do
-        @relation_type.update_attributes(:name => 'Related Product')
-        @product.related_products.should include(@other)
+      it 'is the pluralised form of the RelationType name' do
+        @relation_type.update_attributes(name: 'Related Product')
+        @product.related_products.should include(other1)
       end
 
-      it "should not return relations for another RelationType" do
-        @product.save!
-        other2 = FactoryGirl.create(:product)
+      it 'does not return relations for another RelationType' do
+        other_relation_type = Spree::RelationType.new(name: 'Recommended Products')
 
-        other_relation_type = Spree::RelationType.new(:name => "Recommended Products")
-
-        relation1 = Spree::Relation.create!(:relatable => @product, :related_to => @other, :relation_type => @relation_type)
-        relation2 = Spree::Relation.create!(:relatable => @product, :related_to => other2, :relation_type => other_relation_type)
+        relation1 = create(:relation, relatable: @product, related_to: other1, relation_type: @relation_type)
+        relation2 = create(:relation, relatable: @product, related_to: other2, relation_type: other_relation_type)
 
         @product.reload
-        @product.related_products.should include(@other)
+        @product.related_products.should include(other1)
         @product.related_products.should_not include(other2)
       end
 
-      it "should not return Products that are deleted" do
-        @other.update_attributes(:deleted_at => Time.now)
-
+      it 'does not return Products that are deleted' do
+        other1.update_attributes(deleted_at: Time.now)
         @product.related_products.should be_blank
       end
 
-      it "should not return Products that are not yet available" do
-        @other.update_attributes(:available_on => Time.now + 1.hour)
-
+      it 'does not return Products that are not yet available' do
+        other1.update_attributes(available_on: Time.now + 1.hour)
         @product.related_products.should be_blank
       end
 
-      it "should not return Products where available_on are blank" do
-        @other.update_attributes(:available_on => nil)
-
+      it 'does not return Products where available_on are blank' do
+        other1.update_attributes(available_on: nil)
         @product.related_products.should be_blank
       end
 
-      it "should return all results if .relation_filter is nil" do
+      it 'return all results when .relation_filter is nil' do
         Spree::Product.should_receive(:relation_filter).and_return(nil)
-        @other.update_attributes(:available_on => Time.now + 1.hour)
-
-        @product.related_products.should include(@other)
+        other1.update_attributes(available_on: Time.now + 1.hour)
+        @product.related_products.should include(other1)
       end
 
-      context "with an enhanced Product.relation_filter" do
-        it "should restrict the filter" do
+      context 'with an enhanced Product.relation_filter' do
+        it 'restrict the filter' do
           relation_filter = Spree::Product.relation_filter
           Spree::Product.should_receive(:relation_filter).at_least(:once).and_return(relation_filter.includes(:master).where('spree_variants.cost_price > 20'))
 
-          @other.master.update_attributes({:cost_price => 10})
+          other1.master.update_attributes({cost_price: 10})
+          other2.master.update_attributes({cost_price: 30})
 
-          other2 = FactoryGirl.create(:product)
-          other2.master.update_attributes({:cost_price => 30})
-          relation = Spree::Relation.create!(:relatable => @product, :related_to => other2, :relation_type => @relation_type)
-
+          relation = create(:relation, relatable: @product, related_to: other2, relation_type: @relation_type)
           results = @product.related_products
-          results.should_not include(@other)
+          results.should_not include(other1)
           results.should include(other2)
         end
       end
     end
   end
 
-  context "instance when relation_types table is missing" do
+  context 'instance when relation_types table is missing' do
     it 'method missing should not throw ActiveRecord::StatementInvalid when the spree_relation_types table is missing' do
       Spree::Product.connection.rename_table('spree_relation_types', 'missing_relation_types')
       begin
