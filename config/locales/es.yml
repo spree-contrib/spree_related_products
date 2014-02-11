@@ -1,5 +1,6 @@
 es:
   spree:
+    back_to_relation_types_list: Volver a la lista de tipos de relación
     new_relation_type: Nuevo tipo de relación
     related_product_discount: Descuento al producto relacionado
     relation_types: Tipos de relación

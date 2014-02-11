@@ -16,7 +16,7 @@ module Spree
 
       return unless eligible?(order)
       total = order.line_items.inject(0) do |total, line_item|
-        relations =  Spree::Relation.find(:all, :conditions => ["discount_amount <> 0.0 AND relatable_type = ? AND relatable_id = ?", "Spree::Product", line_item.variant.product.id])
+        relations = Spree::Relation.where(["discount_amount <> 0.0 AND relatable_type = ? AND relatable_id = ?", "Spree::Product", line_item.variant.product.id])
         discount_applies_to = relations.map {|rel| rel.related_to.master }
 
         order.line_items.each do |li|

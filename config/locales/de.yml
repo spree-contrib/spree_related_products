@@ -1,5 +1,6 @@
 de:
   spree:
+    back_to_relation_types_list: Zurück zu Beziehungstypen Liste
     new_relation_type: Neuer Verwandschaftstyp
     related_product_discount: Skonto für verwandte Produkte
     relation_types: Verwandschaftstypen
@@ -7,5 +8,6 @@ de:
     editing_relation_type: Verwandschaftstyp bearbeiten
     related_products: Verwandte Produkte
     add_related_product: Verwandtes Produkt hinzufügen
+    name_or_sku: Name oder Artikelnummer
     manage_relation_types: Verwandschaftstypen konfigurieren
     no_relation_types: "Sie müssen Verwandschaftstypen konfigurieren, bevor Sie diese Funktion nutzen können."

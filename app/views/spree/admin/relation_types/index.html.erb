@@ -1,18 +1,15 @@
-<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+<%= render 'spree/admin/shared/configuration_menu' %>
 
 <% content_for :page_title do %>
   <%= Spree.t(:relation_types) %>
 <% end %>
 
 <% content_for :page_actions do %>
-  <ul class="actions inline-menu">
-    <li>
-      <%= button_link_to Spree.t(:new_relation_type), new_object_url, { :icon => 'icon-plus', :id => 'admin_new_relation_type' }  %>
-    </li>
-  </ul>
+  <li><%= button_link_to Spree.t(:new_relation_type), new_object_url, { :icon => 'icon-plus', :id => 'admin_new_relation_type' } %></li>
 <% end %>
 
-<table class="index" id='listing_relation_types' data-hook>
+<% if @relation_types.any? %>
+<table class="index responsive" id="listing_relation_types" data-hook>
   <colgroup>
     <col style="width: 20%" />
     <col style="width: 20%" />
@@ -24,7 +21,7 @@
       <th><%= Spree.t(:name) %></th>
       <th><%= Spree.t(:applies_to) %></th>
       <th><%= Spree.t(:description) %></th>
-      <th class="actions"></th>
+      <th class="actions" data-hook="admin_pages_index_header_actions"></th>
     </tr>
   </thead>
   <tbody>
@@ -33,7 +30,7 @@
         <td class="align-center"><%= relation_type.name %></td>
         <td class="align-center"><%= relation_type.applies_to %></td>
         <td class="align-center"><%= relation_type.description %></td>
-        <td class="actions">
+        <td class="actions" data-hook="admin_relation_types_index_row_actions">
           <%= link_to_edit relation_type, :no_text => true %>
           <%= link_to_delete relation_type, :no_text => true %>
         </td>
@@ -41,4 +38,9 @@
     <% end %>
   </tbody>
 </table>
-
+<% else %>
+  <div class="alpha twelve columns no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: Spree.t(:relation_types)) %>,
+    <%= link_to Spree.t(:add_one), spree.new_admin_relation_type_path %>!
+  </div>
+<% end %>

@@ -1,5 +1,6 @@
 ru:
   spree:
+    back_to_relation_types_list: Вернуться к соотношению списке типов
     new_relation_type: Новый Тип Отношений
     related_product_discount: Скидка На Относящийся Товар
     relation_types: Типы Отношений

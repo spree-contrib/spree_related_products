@@ -22,7 +22,10 @@ Spree::Product.class_eval do
   # This could also feasibly be overridden to sort the result in a
   # particular order, or restrict the number of items returned.
   def self.relation_filter
-    where('spree_products.deleted_at' => nil).where('spree_products.available_on IS NOT NULL').where('spree_products.available_on <= ?', Time.now)
+    where('spree_products.deleted_at' => nil).
+    where('spree_products.available_on IS NOT NULL').
+    where('spree_products.available_on <= ?', Time.now).
+    references(self)
   end
 
   # Decides if there is a relevant Spree::RelationType related to this class
@@ -72,7 +75,7 @@ Spree::Product.class_eval do
     result = self.class.where(:id => related_ids)
 
     # Merge in the relation_filter if it's available
-    result = result.merge(self.class.relation_filter.all) if relation_filter
+    result = result.merge(self.class.relation_filter.references(self).to_a) if relation_filter
 
     # make sure results are in same order as related_ids array  (position order)
     result = related_ids.collect {|id| result.detect {|x| x.id == id} } if result.present?

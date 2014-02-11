@@ -1,5 +1,6 @@
 cs:
   spree:
+    back_to_relation_types_list: Zpět na vztahu seznamu typů
     new_relation_type: Nový typ relace
     related_product_discount: Sleva pro související zboží
     relation_types: Typy vztahů

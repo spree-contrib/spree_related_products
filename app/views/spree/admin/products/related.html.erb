@@ -22,7 +22,7 @@
       </div>
       <div id='related_product_discount' class='columns three'>
         <%= label_tag :add_discount, Spree.t("discount_amount") %>
-        <%= text_field_tag :add_discount, 0.0, :style => 'margin: 0pt; padding: 4px; font-size: 1.5em; width: 98%;'  %>
+        <%= text_field_tag :add_discount, 0.0, :style => 'text-align:center;margin:0;padding:4px;font-size:1.5em;width:98%;' %>
       </div>
       <div id='related_product_add' class='columns one'>
         <label style='visibility: hidden;'>&nbsp;</label>
@@ -46,8 +46,8 @@
         update_target = jQuery(this).attr("data-update");
 
         jQuery.ajax({
-          dataType: 'script', 
-          url: this.href, 
+          dataType: 'script',
+          url: this.href,
           type: "POST",
           data: {
             "relation[related_to_type]" : "Product",
