@@ -2,6 +2,7 @@ Related Products
 ================
 
 [![Build Status](https://api.travis-ci.org/spree/spree_related_products.png?branch=master)](https://travis-ci.org/spree/spree_related_products)
+[![Code Climate](https://codeclimate.com/github/spree/spree_related_products.png)](https://codeclimate.com/github/spree/spree_related_products)
 
 This extension provides a generic way for you to define different types of relationships between your products, by defining a RelationType for each type of relationship you'd like to maintain.
 
