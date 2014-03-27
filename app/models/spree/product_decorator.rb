@@ -1,6 +1,10 @@
 Spree::Product.class_eval do
   has_many :relations, -> { order(:position) }, :as => :relatable
 
+  # When a Spree::Product is destroyed, we also want to destroy all Spree::Relations
+  # "from" it as well as "to" it.
+  after_destroy :destroy_product_relations
+
   # Returns all the Spree::RelationType's which apply_to this class.
   def self.relation_types
     Spree::RelationType.where(:applies_to => self.to_s).order(:name)
@@ -44,6 +48,13 @@ Spree::Product.class_eval do
 
   def has_related_products?(relation_method)
     find_relation_type(relation_method).present?
+  end
+
+  def destroy_product_relations
+    # First we destroy relationships "from" this Product to others.
+    self.relations.destroy_all
+    # Next we destroy relationships "to" this Product.
+    Spree::Relation.where(related_to_type: self.class.to_s).where(related_to_id: self.id).destroy_all
   end
 
   private
