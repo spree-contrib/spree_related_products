@@ -45,7 +45,7 @@ module Spree
       end
 
       def load_data
-        @product = Spree::Product.find_by_slug(params[:product_id])
+        @product = Spree::Product.friendly.find(params[:product_id])
       end
 
       def model_class
