@@ -83,10 +83,12 @@ Spree::Product.class_eval do
     result = self.class.where(:id => related_ids)
 
     # Merge in the relation_filter if it's available
-    result = result.merge(self.class.relation_filter.all) if relation_filter
+    result = result.merge(self.class.relation_filter) if relation_filter
 
     # make sure results are in same order as related_ids array  (position order)
-    result = related_ids.collect {|id| result.detect {|x| x.id == id} } if result.present?
+    if result.present?
+      result.where(id: related_ids).order(:position)
+    end
 
     result
   end
@@ -97,5 +99,4 @@ Spree::Product.class_eval do
   def relation_filter
     self.class.relation_filter
   end
-
 end
