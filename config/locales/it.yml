@@ -1,0 +1,13 @@
+it:
+  spree:
+    back_to_relation_types_list: Torna alla lista dei Tipi di Relazione
+    new_relation_type: Nuovo Tipo di Relazione
+    related_product_discount: Sconto prodotti correlati
+    relation_types: Tipi di Relazione
+    applies_to: Si applica a
+    editing_relation_type: Modifica Tipo di Relazione
+    related_products: Prodotti Correlati
+    add_related_product: Aggiungi un Prodotto Correlato
+    name_or_sku: Nome o SKU
+    manage_relation_types: Tipi di Relazione
+    no_relation_types: Devi configurare i Tipi di Relazione prima di poter usare questa funzione.
