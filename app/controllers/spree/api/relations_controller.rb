@@ -6,7 +6,7 @@ module Spree
 
       def create
         authorize! :create, Relation
-        @relation = Relation.new(relation_params)
+        @relation = @product.relations.new(relation_params)
         @relation.relatable = @product
         @relation.related_to = Spree::Variant.find(relation_params[:related_to_id]).product
         if @relation.save
