@@ -10,4 +10,15 @@ Spree::Core::Engine.routes.draw do
       end
     end
   end
+
+  namespace :api, :defaults => { :format => 'json' } do
+    resources :products, only: [] do
+      get :related, :on => :member
+      resources :relations do
+        collection do
+          post :update_positions
+        end
+      end
+    end
+  end
 end
