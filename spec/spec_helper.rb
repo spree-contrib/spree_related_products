@@ -11,6 +11,12 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 # Requires factories defined in spree_core
 require 'spree/testing_support/factories'
 
+# include local factories
+Dir["#{File.dirname(__FILE__)}/factories/**/*.rb"].each do |f|
+  fp =  File.expand_path(f)
+  require fp
+end
+
 #Requires controller_requests defined in spree_core
 require 'spree/testing_support/controller_requests'
 
@@ -21,4 +27,5 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+  config.include Spree::TestingSupport::ControllerRequests, :type => :controller
 end
