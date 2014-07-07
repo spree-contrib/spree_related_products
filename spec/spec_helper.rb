@@ -17,12 +17,6 @@ Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |f| require f }
 
 require 'spree/testing_support/factories'
 
-# include local factories
-Dir["#{File.dirname(__FILE__)}/factories/**/*.rb"].each do |f|
-  fp =  File.expand_path(f)
-  require fp
-end
-
 require 'spree/testing_support/controller_requests'
 require 'spree/testing_support/authorization_helpers'
 require 'spree/testing_support/url_helpers'
