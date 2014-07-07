@@ -1,6 +1,7 @@
 require 'spree_backend'
 require 'spree_core'
 require 'coffee_script'
+require 'sass/rails'
 
 module SpreeRelatedProducts
   class Engine < Rails::Engine
