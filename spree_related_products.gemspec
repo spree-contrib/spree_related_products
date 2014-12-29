@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.has_rdoc = true
 
-  s.add_dependency 'spree_backend', '~> 2.4.0.beta'
+  s.add_dependency 'spree_backend', '~> 2.4.0'
 
   s.add_development_dependency 'factory_girl', '4.4'
   s.add_development_dependency 'ffaker'
