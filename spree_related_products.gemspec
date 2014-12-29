@@ -6,18 +6,17 @@ Gem::Specification.new do |s|
   s.description = s.summary
   s.required_ruby_version = '>= 1.9.3'
 
-  s.author            = 'Brian Quinn'
-  s.email             = 'brian@railsdog.com'
-  s.homepage          = 'http://spreecommerce.com'
-  s.rubyforge_project = 'spree_related_products'
-  s.license           = %q{BSD-3}
+  s.author       = 'Brian Quinn'
+  s.email        = 'brian@railsdog.com'
+  s.homepage     = 'https://github.com/spree-contrib/spree_related_products'
+  s.license      = 'BSD-3'
 
   s.files        = `git ls-files`.split("\n")
   s.test_files   = `git ls-files -- spec/*`.split("\n")
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.has_rdoc = true
+  s.has_rdoc = false
 
   s.add_dependency 'spree_backend', '~> 2.4.0'
 
