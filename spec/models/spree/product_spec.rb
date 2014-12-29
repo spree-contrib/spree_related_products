@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Spree::Product do
   context 'class' do
     describe '.relation_types' do

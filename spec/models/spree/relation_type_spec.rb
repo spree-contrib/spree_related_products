@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Spree::RelationType do
   context 'relations' do
     it { should have_many(:relations).dependent(:destroy) }

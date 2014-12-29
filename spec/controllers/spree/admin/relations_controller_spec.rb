@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Spree::Admin::RelationsController do
   stub_authorization!
 

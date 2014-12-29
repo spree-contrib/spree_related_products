@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 feature 'Admin Product Relation', js: true do
   stub_authorization!
 

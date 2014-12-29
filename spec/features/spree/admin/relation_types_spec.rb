@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 feature 'Admin Manage Relation Types', js: true do
   stub_authorization!
 

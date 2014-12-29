@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Spree::Relation do
   context 'relations' do
     it { should belong_to(:relation_type) }

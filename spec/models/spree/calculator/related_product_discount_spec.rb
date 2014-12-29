@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Spree::Calculator::RelatedProductDiscount do
   let(:user) { create(:user) }
   let(:related_product_discount) { Spree::Calculator::RelatedProductDiscount.new }
