@@ -3,7 +3,7 @@
     <div data-hook="name" class="field">
       <%= f.field_container :name do %>
         <%= f.label :name, Spree.t("name") %> <span class="required">*</span><br />
-        <%= f.text_field :name, :class => 'fullwidth title' %>
+        <%= f.text_field :name, class: 'fullwidth title' %>
         <%= error_message_on :relation_type, :name %>
       <% end %>
     </div>
@@ -12,7 +12,7 @@
     <div data-hook="applies_to" class="field">
       <%= f.field_container :applies_to do %>
         <%= f.label :applies_to, Spree.t("applies_to") %> <span class="required">*</span><br />
-        <%= f.text_field :applies_to, :value => f.object.nil? ? "Spree::Product" : f.object.applies_to, :class => 'fullwidth title' %>
+        <%= f.text_field :applies_to, value: f.object.nil? ? "Spree::Product" : f.object.applies_to, class: 'fullwidth title' %>
         <%= error_message_on :relation_type, :applies_to %>
   <% end %>
     </div>
@@ -21,7 +21,7 @@
     <div data-hook="description" class="field">
       <%= f.field_container :description do %>
         <%= f.label :description, Spree.t("description") %><br />
-        <%= f.text_area :description, {:cols => 60, :rows => 2, :class => 'fullwidth'} %>
+        <%= f.text_area :description, {cols: 60, rows: 2, class: 'fullwidth'} %>
         <%= error_message_on :relation_type, :description %>
       <% end %>
     </div>

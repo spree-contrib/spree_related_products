@@ -5,7 +5,7 @@
 <% end %>
 
 <% content_for :page_actions do %>
-  <li><%= button_link_to Spree.t(:new_relation_type), new_object_url, { :icon => 'icon-plus', :id => 'admin_new_relation_type' } %></li>
+  <li><%= button_link_to Spree.t(:new_relation_type), new_object_url, { icon: 'icon-plus', id: 'admin_new_relation_type' } %></li>
 <% end %>
 
 <% if @relation_types.any? %>
@@ -31,8 +31,8 @@
         <td class="align-center"><%= relation_type.applies_to %></td>
         <td class="align-center"><%= relation_type.description %></td>
         <td class="actions" data-hook="admin_relation_types_index_row_actions">
-          <%= link_to_edit relation_type, :no_text => true %>
-          <%= link_to_delete relation_type, :no_text => true %>
+          <%= link_to_edit relation_type, no_text: true %>
+          <%= link_to_delete relation_type, no_text: true %>
         </td>
       </tr>
     <% end %>

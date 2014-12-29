@@ -1,7 +1,7 @@
 module Spree
   module Api
     class RelationsController < Spree::Api::BaseController
-      before_filter :load_data, :only => [:create, :destroy]
+      before_filter :load_data, only: [:create, :destroy]
       before_filter :find_relation, only: [:update, :destroy]
 
       def create
@@ -28,11 +28,11 @@ module Spree
       def update_positions
         authorize! :update, Relation
         params[:positions].each do |id, index|
-          model_class.where(:id => id).update_all(:position => index)
+          model_class.where(id: id).update_all(position: index)
         end
 
         respond_to do |format|
-          format.js  { render :text => 'Ok' }
+          format.js { render text: 'Ok' }
         end
       end
 

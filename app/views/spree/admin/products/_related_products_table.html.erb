@@ -22,10 +22,10 @@
         </td>
         <td><%= link_to relation.related_to.name, relation.related_to %></td>
         <td class="align-center"><%= form_for(relation, url:admin_product_relation_path(relation.relatable, relation)) do |f| %>
-           <%= f.text_field :discount_amount, :style => "text-align:center;width:100px;" %> &nbsp; <%= f.submit Spree.t(:update) %> <% end %></td>
+           <%= f.text_field :discount_amount, style: "text-align:center;width:100px;" %> &nbsp; <%= f.submit Spree.t(:update) %> <% end %></td>
         <td class="align-center"><%= relation.relation_type.name %></td>
         <td class="actions">
-          <%= link_to_delete relation, {:url => admin_product_relation_url(relation.relatable, relation), :no_text => true} %>
+          <%= link_to_delete relation, {url: admin_product_relation_url(relation.relatable, relation), no_text: true} %>
         </td>
       </tr>
     <% end %>

@@ -1,5 +1,5 @@
 Spree::Product.class_eval do
-  has_many :relations, -> { order(:position) }, :as => :relatable
+  has_many :relations, -> { order(:position) }, as: :relatable
 
   # When a Spree::Product is destroyed, we also want to destroy all Spree::Relations
   # "from" it as well as "to" it.
@@ -7,7 +7,7 @@ Spree::Product.class_eval do
 
   # Returns all the Spree::RelationType's which apply_to this class.
   def self.relation_types
-    Spree::RelationType.where(:applies_to => self.to_s).order(:name)
+    Spree::RelationType.where(applies_to: self.to_s).order(:name)
   end
 
   # The AREL Relations that will be used to filter the resultant items.
@@ -71,7 +71,6 @@ Spree::Product.class_eval do
       # from another extension when both are used in a project.
       nil
     end
-
   end
 
   # Returns all the Products that are related to this record for the given RelationType.
@@ -80,10 +79,10 @@ Spree::Product.class_eval do
   # them using +Product.relation_filter+ to remove unwanted items.
   def relations_for_relation_type(relation_type)
     # Find all the relations that belong to us for this RelationType, ordered by position
-    related_ids = relations.where(:relation_type_id => relation_type.id).order(:position).pluck(:related_to_id)
+    related_ids = relations.where(relation_type_id: relation_type.id).order(:position).pluck(:related_to_id)
 
     # Construct a query for all these records
-    result = self.class.where(:id => related_ids)
+    result = self.class.where(id: related_ids)
 
     # Merge in the relation_filter if it's available
     result = result.merge(self.class.relation_filter) if relation_filter

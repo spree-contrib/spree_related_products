@@ -1,18 +1,18 @@
-<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+<%= render partial: 'spree/admin/shared/configuration_menu' %>
 
 <% content_for :page_title do %>
   <%= Spree.t(:new_relation_type) %>
 <% end %>
 
 <% content_for :page_actions do %>
-  <li><%= link_to_with_icon 'icon-arrow-left', Spree.t(:back_to_relation_types_list), admin_relation_types_path, :class => 'button' %></li>
+  <li><%= link_to_with_icon 'icon-arrow-left', Spree.t(:back_to_relation_types_list), admin_relation_types_path, class: 'button' %></li>
 <% end %>
 
-<%= render "spree/shared/error_messages", :target => @relation_type %>
+<%= render "spree/shared/error_messages", target: @relation_type %>
 
-<%= form_for :relation_type, :url => collection_url do |f| %>
+<%= form_for :relation_type, url: collection_url do |f| %>
   <fieldset class="no-border-top">
-    <%= render :partial => 'form', :locals => { :f => f } %>
-    <%= render :partial => 'spree/admin/shared/new_resource_links' %>
+    <%= render partial: 'form', locals: { f: f } %>
+    <%= render partial: 'spree/admin/shared/new_resource_links' %>
   </fieldset>
 <% end %>
