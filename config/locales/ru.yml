@@ -1,4 +1,13 @@
+---
 ru:
+  activerecord:
+    models:
+      spree/relation:
+        one: Oтношение
+        other: Oтношения
+      spree/relation_type:
+        one: Тип Oтношений
+        other: Типы Отношений
   spree:
     back_to_relation_types_list: Вернуться к соотношению списке типов
     new_relation_type: Новый Тип Отношений

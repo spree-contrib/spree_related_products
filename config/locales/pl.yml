@@ -1,4 +1,13 @@
+---
 pl:
+  activerecord:
+    models:
+      spree/relation:
+        one: Relacja
+        other: Relacje
+      spree/relation_type:
+        one: Typ relacja
+        other: Typy relacji
   spree:
     back_to_relation_types_list: Powrót do listy typów relacji
     new_relation_type: Nowy typ relacji

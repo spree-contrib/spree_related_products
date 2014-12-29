@@ -1,4 +1,13 @@
+---
 de:
+  activerecord:
+    models:
+      spree/relation:
+        one: Verwandte
+        other: Verhältnis
+      spree/relation_type:
+        one: Verwandschaftstyp
+        other: Verwandschaftstypen
   spree:
     back_to_relation_types_list: Zurück zu Beziehungstypen Liste
     new_relation_type: Neuer Verwandschaftstyp

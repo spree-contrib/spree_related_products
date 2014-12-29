@@ -1,4 +1,13 @@
+---
 sv:
+  activerecord:
+    models:
+      spree/relation:
+        one: Relation
+        other: Relationer
+      spree/relation_type:
+        one: Relationstyp
+        other: Relationstyper
   spree:
     back_to_relation_types_list: Tillbaks till relationstyplistan
     new_relation_type: Ny typ av relation

@@ -1,4 +1,13 @@
+---
 nl:
+  activerecord:
+    models:
+      spree/relation:
+        one: Relatie
+        other: Relatie
+      spree/relation_type:
+        one: Relatie type
+        other: Relatie types
   spree:
     back_to_relation_types_list: Terug naar verhouding lijsttypen
     new_relation_type: Nieuw relatie type
