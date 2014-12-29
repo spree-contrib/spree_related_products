@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.version     = '3.2'
   s.summary     = 'Allows multiple types of relationships between products to be defined'
   s.description = s.summary
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = '>= 2.1.0'
 
   s.author       = 'Brian Quinn'
   s.email        = 'brian@railsdog.com'
@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.has_rdoc = false
 
-  s.add_dependency 'spree_backend', '~> 2.4.0'
+  s.add_runtime_dependency 'spree_backend', '~> 3.0.0.beta'
 
   s.add_development_dependency 'factory_girl', '4.4'
   s.add_development_dependency 'ffaker'
