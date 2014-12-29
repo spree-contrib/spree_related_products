@@ -1,7 +1,7 @@
 module Spree
   module Admin
     class RelationsController < BaseController
-      before_filter :load_data, only: [:create, :destroy]
+      before_action :load_data, only: [:create, :destroy]
 
       respond_to :js, :html
 

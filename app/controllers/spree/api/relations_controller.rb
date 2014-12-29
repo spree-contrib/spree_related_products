@@ -1,8 +1,8 @@
 module Spree
   module Api
     class RelationsController < Spree::Api::BaseController
-      before_filter :load_data, only: [:create, :destroy]
-      before_filter :find_relation, only: [:update, :destroy]
+      before_action :load_data, only: [:create, :destroy]
+      before_action :find_relation, only: [:update, :destroy]
 
       def create
         authorize! :create, Relation
