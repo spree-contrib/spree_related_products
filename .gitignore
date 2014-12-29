@@ -8,3 +8,5 @@ spec/dummy
 tmp
 .localeapp
 coverage
+.ruby-version
+.ruby-gemset
