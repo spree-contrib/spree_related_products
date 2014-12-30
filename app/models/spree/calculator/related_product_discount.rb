@@ -3,7 +3,7 @@ module Spree
     preference :item_total_threshold, :decimal, default: 5
 
     def self.description
-      Spree.t("related_product_discount")
+      Spree.t(:related_product_discount)
     end
 
     def compute(object)
@@ -16,7 +16,7 @@ module Spree
 
       return unless eligible?(order)
       total = order.line_items.inject(0) do |total, line_item|
-        relations =  Spree::Relation.where("discount_amount <> 0.0 AND relatable_type = ? AND relatable_id = ?", "Spree::Product", line_item.variant.product.id)
+        relations =  Spree::Relation.where(*discount_query(line_item))
         discount_applies_to = relations.map {|rel| rel.related_to.master }
 
         order.line_items.each do |li|
@@ -37,7 +37,17 @@ module Spree
     end
 
     def eligible?(order)
-      order.line_items.any? { |line_item| Spree::Relation.exists?(["discount_amount <> 0.0 AND relatable_type = ? AND relatable_id = ?", "Spree::Product", line_item.variant.product.id])}
+      order.line_items.any? do |line_item|
+        Spree::Relation.exists?(discount_query(line_item))
+      end
+    end
+
+    def discount_query(line_item)
+      [
+        'discount_amount <> 0.0 AND relatable_type = ? AND relatable_id = ?',
+        'Spree::Product',
+        line_item.variant.product.id
+      ]
     end
   end
 end
