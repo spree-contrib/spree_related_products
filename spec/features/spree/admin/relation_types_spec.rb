@@ -1,17 +1,15 @@
-feature 'Admin Manage Relation Types', js: true do
+RSpec.feature 'Admin Relation Types', :js do
   stub_authorization!
 
   background do
-    visit spree.admin_path
-    click_link 'Configuration'
-    click_link 'Manage Relation Types'
+    visit spree.admin_relation_types_path
   end
 
   scenario 'when no relation types exists' do
-    expect(page).to have_text 'NO RELATION TYPES FOUND, ADD ONE!'
+    expect(page).to have_text 'No Relation Types found, Add One!'
   end
 
-  context '#create' do
+  context 'create' do
     scenario 'can create a new relation type' do
       click_link 'New Relation Type'
       expect(current_path).to eq spree.new_admin_relation_type_path
@@ -25,7 +23,7 @@ feature 'Admin Manage Relation Types', js: true do
       expect(current_path).to eq spree.admin_relation_types_path
     end
 
-    scenario 'will show validation errors with blank name' do
+    scenario 'shows validation errors with blank :name' do
       click_link 'New Relation Type'
       expect(current_path).to eq spree.new_admin_relation_type_path
 
@@ -35,7 +33,7 @@ feature 'Admin Manage Relation Types', js: true do
       expect(page).to have_text 'Name can\'t be blank'
     end
 
-    scenario 'will show validation errors with blank applies_to' do
+    scenario 'shows validation errors with blank :applies_to' do
       click_link 'New Relation Type'
       expect(current_path).to eq spree.new_admin_relation_type_path
 
@@ -55,8 +53,8 @@ feature 'Admin Manage Relation Types', js: true do
       visit spree.admin_relation_types_path
     end
 
-    context '#show' do
-      scenario 'will display existing relation types' do
+    context 'show' do
+      scenario 'displays existing relation types' do
         within_row(1) do
           expect(column_text(1)).to eq 'Gears'
           expect(column_text(2)).to eq 'Spree::Product'
@@ -65,7 +63,7 @@ feature 'Admin Manage Relation Types', js: true do
       end
     end
 
-    context '#edit' do
+    context 'edit' do
       background do
         within_row(1) { click_icon :edit }
         expect(current_path).to eq spree.edit_admin_relation_type_path(1)
@@ -78,18 +76,18 @@ feature 'Admin Manage Relation Types', js: true do
         expect(page).to have_text 'Gadgets'
       end
 
-      scenario 'will show validation errors if there are any' do
+      scenario 'shows validation errors with blank :name' do
         fill_in 'Name', with: ''
         click_button 'Update'
         expect(page).to have_text 'Name can\'t be blank'
       end
     end
 
-    context '#delete' do
-      scenario 'they can be removed' do
+    context 'delete' do
+      scenario 'can remove records' do
         within_row(1) do
           expect(column_text(1)).to eq 'Gears'
-          click_icon :trash
+          click_icon :delete
         end
         page.driver.browser.switch_to.alert.accept unless Capybara.javascript_driver == :poltergeist
         expect(page).to have_text 'successfully removed!'

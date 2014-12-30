@@ -1,12 +1,12 @@
-describe Spree::RelationType do
+RSpec.describe Spree::RelationType, type: :model do
   context 'relations' do
-    it { should have_many(:relations).dependent(:destroy) }
+    it { is_expected.to have_many(:relations).dependent(:destroy) }
   end
 
   context 'validation' do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:applies_to) }
-    it { should validate_uniqueness_of(:name).case_insensitive }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:applies_to) }
+    it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
 
     it 'does not create duplicate names' do
       create(:relation_type, name: 'Gears')
