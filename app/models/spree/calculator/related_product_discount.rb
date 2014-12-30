@@ -15,14 +15,14 @@ module Spree
       end
 
       return unless eligible?(order)
-      total = order.line_items.inject(0) do |total, line_item|
+      total = order.line_items.inject(0) do |sum, line_item|
         relations =  Spree::Relation.where(*discount_query(line_item))
         discount_applies_to = relations.map {|rel| rel.related_to.master }
 
         order.line_items.each do |li|
           if discount_applies_to.include? li.variant
             discount = relations.detect {|rel| rel.related_to.master == li.variant}.discount_amount
-            total += if li.quantity < line_item.quantity
+            sum += if li.quantity < line_item.quantity
               (discount * li.quantity)
             else
               (discount * line_item.quantity)
@@ -30,7 +30,7 @@ module Spree
           end
         end
 
-        total
+        sum
       end
 
       total == 0 ? nil : total
