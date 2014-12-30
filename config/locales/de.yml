@@ -14,5 +14,5 @@ de:
     applies_to: Anwenden auf
     related_products: Verwandte Produkte
     add_related_product: Verwandtes Produkt hinzufügen
-    name_or_sku: Name oder Artikelnummer
+    name_or_sku_short: Name oder Artikelnummer
     no_relation_types: "Sie müssen Verwandschaftstypen konfigurieren, bevor Sie diese Funktion nutzen können."

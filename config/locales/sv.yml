@@ -14,5 +14,5 @@ sv:
     applies_to: Gäller
     related_products: Relaterade produkter
     add_related_product: Lägg till relaterad produkt
-    name_or_sku: Namn eller SKU
+    name_or_sku_short: Namn eller SKU
     no_relation_types: Du måste konfigurera relationstyper innan du kan använda den här funktionen.

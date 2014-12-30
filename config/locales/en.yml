@@ -14,5 +14,5 @@ en:
     applies_to: Applies To
     related_products: Related Products
     add_related_product: Add Related Product
-    name_or_sku: Name or SKU
+    name_or_sku_short: Name or SKU
     no_relation_types: You need to configure Relation Types before you can use this feature.

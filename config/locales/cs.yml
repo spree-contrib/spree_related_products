@@ -14,5 +14,5 @@ cs:
     applies_to: Platí pro
     related_products: Související zboží
     add_related_product: Nové související zboží
-    name_or_sku: Název nebo SKU
+    name_or_sku_short: Název nebo SKU
     no_relation_types: 'Musíte nastavit typy vztahů, než budete moci použít tuto funkci.'

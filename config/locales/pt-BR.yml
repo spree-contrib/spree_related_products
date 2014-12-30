@@ -14,5 +14,5 @@ pt-BR:
     applies_to: Aplicado à
     related_products: Produtos relacionados
     add_related_product: Adicionar produto relacionado
-    name_or_sku: Nome ou SKU
+    name_or_sku_short: Nome ou SKU
     no_relation_types: Você precisa configurar os tipos de relacionamento antes de utilizar esta funcionalidade.

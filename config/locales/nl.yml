@@ -14,5 +14,5 @@ nl:
     applies_to: Toegepast op
     related_products: Gerelateerde producten
     add_related_product: Gerelateerd product toevoegen
-    name_or_sku: Naam of SKU
+    name_or_sku_short: Naam of SKU
     no_relation_types: Je moet relatie types instellen voordat je deze functie kan gebruiken.
