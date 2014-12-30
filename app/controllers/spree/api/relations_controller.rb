@@ -45,7 +45,20 @@ module Spree
       private
 
       def relation_params
-        params.require(:relation).permit(:related_to, :relation_type, :relatable, :related_to_id, :discount_amount, :relation_type_id, :related_to_type, :position)
+        params.require(:relation).permit(*permitted_attributes)
+      end
+
+      def permitted_attributes
+        [
+          :related_to,
+          :relation_type,
+          :relatable,
+          :related_to_id,
+          :discount_amount,
+          :relation_type_id,
+          :related_to_type,
+          :position
+        ]
       end
 
       def load_data
