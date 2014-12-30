@@ -1,6 +1,6 @@
 # Related Products
 
-[![Build Status](https://travis-ci.org/spree-contrib/spree_related_products.svg?branch=2-4-stable)](https://travis-ci.org/spree-contrib/spree_related_products)
+[![Build Status](https://travis-ci.org/spree-contrib/spree_related_products.svg?branch=master)](https://travis-ci.org/spree-contrib/spree_related_products)
 [![Code Climate](https://codeclimate.com/github/spree-contrib/spree_related_products/badges/gpa.svg)](https://codeclimate.com/github/spree-contrib/spree_related_products)
 
 This extension provides a generic way for you to define different types of relationships between your products, by defining a RelationType for each type of relationship you'd like to maintain.
@@ -56,7 +56,7 @@ Note: In order for the coupon to be automatically applied, you must create a pro
 
 Add to `Gemfile`:
 ```ruby
-gem 'spree_related_products', github: 'spree-contrib/spree_related_products', branch: '2-4-stable'
+gem 'spree_related_products', github: 'spree-contrib/spree_related_products', branch: 'master'
 ```
 
 Run:
