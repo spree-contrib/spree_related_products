@@ -9,14 +9,10 @@ pt-BR:
         one: Tipo de relação
         other: Tipos de relação
   spree:
-    back_to_relation_types_list: Voltar para lista de tipos de relação
     new_relation_type: Novo tipo de relacionamento
     related_product_discount: Desconto de produto relacionado
-    relation_types: Tipos de relacionamento
     applies_to: Aplicado à
-    editing_relation_type: Editando tipo de relacionamento
     related_products: Produtos relacionados
     add_related_product: Adicionar produto relacionado
     name_or_sku: Nome ou SKU
-    manage_relation_types: Gerenciar tipos de relacionamento
     no_relation_types: Você precisa configurar os tipos de relacionamento antes de utilizar esta funcionalidade.

@@ -9,14 +9,10 @@ cs:
         one: Relation Type
         other: Typy vztahů
   spree:
-    back_to_relation_types_list: Zpět na vztahu seznamu typů
     new_relation_type: Nový typ relace
     related_product_discount: Sleva pro související zboží
-    relation_types: Typy vztahů
     applies_to: Platí pro
-    editing_relation_type: Editace vztahového typu
     related_products: Související zboží
     add_related_product: Nové související zboží
     name_or_sku: Název nebo SKU
-    manage_relation_types: Správa vztahových typu
     no_relation_types: 'Musíte nastavit typy vztahů, než budete moci použít tuto funkci.'
