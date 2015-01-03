@@ -1,8 +1,8 @@
 Related Products
 ================
 
-[![Build Status](https://api.travis-ci.org/spree/spree_related_products.png?branch=2-2-stable)](https://travis-ci.org/spree/spree_related_products)
-[![Code Climate](https://codeclimate.com/github/spree/spree_related_products.png)](https://codeclimate.com/github/spree/spree_related_products)
+[![Build Status](https://travis-ci.org/spree-contrib/spree_related_products.svg?branch=2-2-stable)](https://travis-ci.org/spree-contrib/spree_related_products)
+[![Code Climate](https://codeclimate.com/github/spree-contrib/spree_related_products/badges/gpa.svg)](https://codeclimate.com/github/spree-contrib/spree_related_products)
 
 This extension provides a generic way for you to define different types of relationships between your products, by defining a RelationType for each type of relationship you'd like to maintain.
 
@@ -57,13 +57,13 @@ Installation
 ------------
 
 Add to `Gemfile`:
-
-    gem 'spree_related_products', :git => 'git://github.com/spree/spree_related_products.git'
-
+```ruby
+gem 'spree_related_products', github: 'spree-contrib/spree_related_products', branch: '2-2-stable'
+```
 Run:
-
-    $ bundle
-    $ bundle exec rails g spree_related_products:install
+```sh
+$ bundle && bundle exec rails g spree_related_products:install
+```
 
 Development
 -----------
