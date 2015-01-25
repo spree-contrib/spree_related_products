@@ -7,7 +7,7 @@ LineLength:
 Documentation:
   Enabled: false
 
-# Neatly aligned code is to swell.
+# Neatly aligned code is too swell.
 SingleSpaceBeforeFirstArg:
   Enabled: false
 
@@ -19,3 +19,7 @@ Blocks:
 # It say we should use fail over raise.
 SignalException:
   Enabled: false
+
+# Avoid contradictory style rules by enforce single quotes.
+StringLiterals:
+  EnforcedStyle: single_quotes
