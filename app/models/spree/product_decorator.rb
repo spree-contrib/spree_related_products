@@ -63,7 +63,7 @@ Spree::Product.class_eval do
   private
 
   def find_relation_type(relation_name)
-    self.class.relation_types.detect { |rt| rt.name.downcase.gsub(' ', '_').pluralize == relation_name.to_s.downcase }
+    self.class.relation_types.detect { |rt| format_name(rt.name) == format_name(relation_name) }
   rescue ActiveRecord::StatementInvalid
     # This exception is throw if the relation_types table does not exist.
     # And this method is getting invoked during the execution of a migration
@@ -98,5 +98,9 @@ Spree::Product.class_eval do
   # record (eg. only higher priced items)
   def relation_filter
     self.class.relation_filter
+  end
+
+  def format_name(name)
+    name.to_s.downcase.gsub(' ', '_').pluralize
   end
 end
