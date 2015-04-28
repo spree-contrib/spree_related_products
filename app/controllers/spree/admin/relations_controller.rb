@@ -35,7 +35,7 @@ module Spree
         @relation = Relation.find(params[:id])
         @relation.destroy
 
-        redirect_to :back
+        # redirect_to :back
       end
 
       private
