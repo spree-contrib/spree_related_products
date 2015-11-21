@@ -12,7 +12,7 @@ module SpreeRelatedProducts
 
     class << self
       def activate
-        cache_klasses = %W(#{config.root}/app/**/*_decorator*.rb #{config.root}/app/overrides/*.rb)
+        cache_klasses = %W(#{config.root}/app/**/*_decorator*.rb)
         Dir.glob(cache_klasses) do |klass|
           Rails.configuration.cache_classes ? require(klass) : load(klass)
         end
