@@ -32,6 +32,7 @@ module Spree
         end
 
         respond_to do |format|
+          format.json { render nothing: true, status: 200 }
           format.js { render text: 'Ok' }
         end
       end

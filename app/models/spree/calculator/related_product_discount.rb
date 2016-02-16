@@ -1,7 +1,5 @@
 module Spree
   class Calculator::RelatedProductDiscount < Spree::Calculator
-    preference :item_total_threshold, :decimal, default: 5
-
     def self.description
       Spree.t(:related_product_discount)
     end
@@ -32,7 +30,7 @@ module Spree
         sum
       end
 
-      total == 0 ? nil : total
+      total
     end
 
     def eligible?(order)
