@@ -8,7 +8,11 @@ RSpec.describe Spree::Admin::RelationsController, type: :controller do
   let!(:relation_type) { create(:relation_type) }
   let!(:relation) { create(:relation, relatable: product, related_to: other1, relation_type: relation_type, position: 0) }
 
-  before { allow(controller).to receive(:spree_current_user).and_return(user) }
+  before do
+    user.generate_spree_api_key!
+    allow(controller).to receive(:spree_current_user).and_return(user)
+  end
+
   after  { Spree::Admin::ProductsController.clear_overrides! }
 
   context '.model_class' do
@@ -28,7 +32,8 @@ RSpec.describe Spree::Admin::RelationsController, type: :controller do
             name: relation_type.name,
             applies_to: relation_type.applies_to
           }
-        }
+        },
+        token: user.spree_api_key
       }
     end
 
@@ -54,7 +59,7 @@ RSpec.describe Spree::Admin::RelationsController, type: :controller do
 
     context '#update' do
       it 'redirects to product/related url' do
-        spree_post :update, id: 1, relation: { discount_amount: 2.0 }
+        spree_put :update, product_id: product.id, id: 1, relation: { discount_amount: 2.0 }
         expect(response).to redirect_to(spree.admin_product_path(relation.relatable) + '/related')
       end
     end
@@ -74,7 +79,7 @@ RSpec.describe Spree::Admin::RelationsController, type: :controller do
         relation2 = create(:relation, relatable: product, related_to: other2, relation_type: relation_type, position: 1)
 
         expect {
-          spree_post :update_positions, id: relation.id, positions: { relation.id => '1', relation2.id => '0' }, format: :js
+          spree_post :update_positions, product_id: product.id, id: relation.id, positions: { relation.id => '1', relation2.id => '0' }, format: :js
           relation.reload
         }.to change(relation, :position).from(0).to(1)
       end
