@@ -41,7 +41,7 @@ RSpec.describe Spree::Calculator::RelatedProductDiscount, type: :model do
       end
 
       it 'returns total count' do
-        expect(subject.compute(@order)).to be_nil
+        expect(subject.compute(@order)).to be_zero
       end
     end
   end
