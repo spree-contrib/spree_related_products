@@ -35,7 +35,10 @@ module Spree
         @relation = Relation.find(params[:id])
         @relation.destroy
 
-        redirect_to :back
+        respond_with(@relation) do |format|
+          format.html { redirect_to related_admin_product_url(@product) }
+          format.js { render_js_for_destroy }
+        end
       end
 
       private
