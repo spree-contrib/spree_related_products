@@ -33,9 +33,20 @@ module Spree
 
       def destroy
         @relation = Relation.find(params[:id])
-        @relation.destroy
+        if @relation.destroy
+          flash[:success] = flash_message_for(@relation, :successfully_removed)
 
-        redirect_to :back
+          respond_with(@relation) do |format|
+            format.html { redirect_to location_after_destroy }
+            format.js   { render :partial => "spree/admin/shared/destroy" }
+          end
+
+        else
+
+          respond_with(@relation) do |format|
+            format.html { redirect_to location_after_destroy }
+          end
+        end
       end
 
       private
