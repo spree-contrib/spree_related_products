@@ -10,3 +10,4 @@ tmp
 coverage
 .ruby-version
 .ruby-gemset
+.idea
