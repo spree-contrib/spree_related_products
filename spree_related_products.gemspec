@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'spree_backend', '~> 3.0.0'
 
+  s.add_development_dependency 'listen', '~> 3.1.5'
   s.add_development_dependency 'factory_girl', '4.4'
   s.add_development_dependency 'ffaker'
   s.add_development_dependency 'rspec-rails', '~> 3.1.0'
