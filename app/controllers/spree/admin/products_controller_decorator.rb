@@ -4,4 +4,3 @@ Spree::Admin::ProductsController.class_eval do
     @relation_types = Spree::Product.relation_types
   end
 end
-
