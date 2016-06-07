@@ -1,8 +1,11 @@
 language: ruby
 rvm:
-  - 2.2.3
+  - 2.3
 sudo: false
 cache: bundler
+before_install:
+  - gem update --system
+  - gem --version
 before_script:
   - sh -e /etc/init.d/xvfb start
   - export DISPLAY=:99.0
