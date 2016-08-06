@@ -35,7 +35,18 @@ module Spree
         @relation = Relation.find(params[:id])
         @relation.destroy
 
-        redirect_to :back
+        if @relation.destroy
+          flash[:success] = flash_message_for(@relation, :successfully_removed)
+
+          respond_with(@relation) do |format|
+            format.html { redirect_to location_after_destroy }
+            format.js   { render_js_for_destroy }
+          end
+        else
+          respond_with(@relation) do |format|
+            format.html { redirect_to location_after_destroy }
+          end
+        end
       end
 
       private
