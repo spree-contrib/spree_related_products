@@ -62,9 +62,8 @@ RSpec.describe Spree::Admin::RelationsController, type: :controller do
 
     context '#destroy' do
       it 'records successfully' do
-        skip 'strange bug with delete record'
         expect {
-          spree_delete :destroy, id: 1, format: :js
+          spree_delete :destroy, { id: relation.id, product_id: relation.relatable_id, format: :js }
         }.to change(Spree::Relation, :count).by(-1)
       end
     end
