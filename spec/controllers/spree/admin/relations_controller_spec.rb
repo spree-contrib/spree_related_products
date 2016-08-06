@@ -55,7 +55,7 @@ RSpec.describe Spree::Admin::RelationsController, type: :controller do
 
     context '#update' do
       it 'redirects to product/related url' do
-        spree_put :update, product_id: product.id, id: 1, relation: { discount_amount: 2.0 }
+        spree_put :update, product_id: product.id, id: relation.id, relation: { discount_amount: 2.0 }
         expect(response).to redirect_to(spree.admin_product_path(relation.relatable) + '/related')
       end
     end
