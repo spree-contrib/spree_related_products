@@ -36,6 +36,8 @@ RSpec.configure do |config|
   config.before(:each, type: :controller) do
     set_request_version('', 1)
   end
+
+  config.order = :random
 end
 
 Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |file| require file }
