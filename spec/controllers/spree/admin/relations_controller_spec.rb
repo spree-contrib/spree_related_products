@@ -28,10 +28,7 @@ RSpec.describe Spree::Admin::RelationsController, type: :controller do
         product_id: product.id,
         relation: {
           related_to_id: other1.id,
-          relation_type: {
-            name: relation_type.name,
-            applies_to: relation_type.applies_to
-          }
+          relation_type_id: relation_type.id
         },
         token: user.spree_api_key
       }
@@ -44,7 +41,6 @@ RSpec.describe Spree::Admin::RelationsController, type: :controller do
       end
 
       it 'returns success with valid params' do
-        skip 'nothing changed, maybe params not so valid?'
         expect {
           spree_post :create, valid_params
         }.to change(Spree::Relation, :count).by(1)
