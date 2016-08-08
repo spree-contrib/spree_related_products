@@ -20,6 +20,7 @@ require 'rspec/rails'
 require 'shoulda-matchers'
 require 'ffaker'
 require 'pry'
+require 'versioncake/version'
 
 RSpec.configure do |config|
   config.fail_fast = false
@@ -32,9 +33,11 @@ RSpec.configure do |config|
     expectations.syntax = :expect
   end
 
-  config.include VersionCake::TestHelpers, type: :controller
-  config.before(:each, type: :controller) do
-    set_request_version('', 1)
+  if VersionCake::VERSION >= '3'
+    config.include VersionCake::TestHelpers, type: :controller
+    config.before(:each, type: :controller) do
+      set_request_version('', 1)
+    end
   end
 
   config.order = :random

@@ -10,3 +10,5 @@ tmp
 coverage
 .ruby-version
 .ruby-gemset
+.idea
+gemfiles/*.gemfile.lock
