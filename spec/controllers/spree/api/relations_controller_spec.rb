@@ -59,7 +59,7 @@ RSpec.describe Spree::Api::RelationsController, type: :controller do
     context '#destroy with' do
       it 'records successfully' do
         expect {
-          spree_delete :destroy, id: 1, product_id: product.id, format: :json, token: user.spree_api_key
+          spree_delete :destroy, id: relation.id, product_id: product.id, format: :json, token: user.spree_api_key
         }.to change(Spree::Relation, :count).by(-1)
       end
     end
