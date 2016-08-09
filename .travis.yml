@@ -1,7 +1,13 @@
 language: ruby
 rvm:
-  - 2.1
-  - 2.2
+  - 2.1.10
+  - 2.2.5
+  - 2.3.1
+
+env:
+  - DB=postgres
+  - DB=mysql
+
 sudo: false
 cache: bundler
 before_script:
