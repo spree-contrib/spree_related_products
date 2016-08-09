@@ -28,10 +28,7 @@ RSpec.describe Spree::Admin::RelationsController, type: :controller do
         product_id: product.id,
         relation: {
           related_to_id: other1.id,
-          relation_type: {
-            name: relation_type.name,
-            applies_to: relation_type.applies_to
-          }
+          relation_type_id: relation_type.id
         },
         token: user.spree_api_key
       }
@@ -44,7 +41,6 @@ RSpec.describe Spree::Admin::RelationsController, type: :controller do
       end
 
       it 'returns success with valid params' do
-        skip 'nothing changed, maybe params not so valid?'
         expect {
           spree_post :create, valid_params
         }.to change(Spree::Relation, :count).by(1)
@@ -59,16 +55,15 @@ RSpec.describe Spree::Admin::RelationsController, type: :controller do
 
     context '#update' do
       it 'redirects to product/related url' do
-        spree_put :update, product_id: product.id, id: 1, relation: { discount_amount: 2.0 }
+        spree_put :update, product_id: product.id, id: relation.id, relation: { discount_amount: 2.0 }
         expect(response).to redirect_to(spree.admin_product_path(relation.relatable) + '/related')
       end
     end
 
     context '#destroy' do
       it 'records successfully' do
-        skip 'strange bug with delete record'
         expect {
-          spree_delete :destroy, id: 1, format: :js
+          spree_delete :destroy, { id: relation.id, product_id: relation.relatable_id, format: :js }
         }.to change(Spree::Relation, :count).by(-1)
       end
     end
