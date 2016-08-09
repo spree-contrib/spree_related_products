@@ -7,6 +7,10 @@ env:
   - DB=postgres
   - DB=mysql
 
+gemfile:
+  - gemfiles/spree_3_1.gemfile
+  - gemfiles/spree_master.gemfile
+
 sudo: false
 cache: bundler
 before_script:
