@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= Spree::RelationType.model_name.human(count: :many) %>
+  <%= plural_resource_name(Spree::RelationType) %>
 <% end %>
 
 <% content_for :page_actions do %>
@@ -38,7 +38,7 @@
   </table>
 <% else %>
   <div class="alert alert-warning no-objects-found">
-    <%= Spree.t(:no_resource_found, resource: Spree::RelationType.model_name.human(count: :many)) %>,
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::RelationType)) %>,
     <%= link_to Spree.t(:add_one), spree.new_admin_relation_type_path %>!
   </div>
 <% end %>
