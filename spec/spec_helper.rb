@@ -17,7 +17,7 @@ rescue LoadError
 end
 
 require 'rspec/rails'
-require 'shoulda-matchers'
+require 'shoulda/matchers'
 require 'ffaker'
 require 'pry'
 require 'versioncake/version'
