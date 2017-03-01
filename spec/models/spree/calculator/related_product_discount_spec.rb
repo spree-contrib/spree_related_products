@@ -21,7 +21,7 @@ RSpec.describe Spree::Calculator::RelatedProductDiscount, type: :model do
     context 'with order' do
       before do
         @order    = double('Spree::Order')
-        product   = build_stubbed(:product)
+        product   = build(:product)
         variant   = double('Spree::Variant', product: product)
         price     = double('Spree::Price', variant: variant, amount: 5.00)
         line_item = double('Spree::LineItem', variant: variant, order: @order, quantity: 1, price: 4.99)

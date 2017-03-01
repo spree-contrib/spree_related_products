@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'spree', github: 'spree/spree', branch: 'master'
-
-gem 'pg'
-gem 'mysql2'
+spree_version = 'master'
+gem 'spree', github: 'spree/spree', branch: spree_version
 
 gemspec
