@@ -1,0 +1,18 @@
+---
+bg:
+  activerecord:
+    models:
+      spree/relation:
+        one: Релация
+        other: Релации
+      spree/relation_type:
+        one: Тип Релация
+        other: Типове Релации
+  spree:
+    new_relation_type: Нов вид релация
+    related_product_discount: Намаление на свързани продукти
+    applies_to: Отнася се за
+    related_products: Свързани продукти
+    add_related_product: Добави свързан продукт
+    name_or_sku_short: Име или SKU
+    no_relation_types: Трябва да се конфигурира Типове Релации преди да може да се използва
