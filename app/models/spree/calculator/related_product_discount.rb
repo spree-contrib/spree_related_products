@@ -7,19 +7,19 @@ module Spree
     def compute(line_item)
       return 0 unless eligible?(line_item)
       total = 0
-        relations = Spree::Relation.where(*discount_query(line_item))
-        discount_applies_to = relations.map {|rel| rel.related_to.master }
+      relations = Spree::Relation.where(*discount_query(line_item))
+      discount_applies_to = relations.map {|rel| rel.related_to.master }
 
-        order = line_item.order
-        order.line_items.each do |li|
-          next unless discount_applies_to.include? li.variant
-          discount = relations.detect { |rel| rel.related_to.master == li.variant }.discount_amount
-          if li.quantity < line_item.quantity
-            total = (discount * li.quantity)
-          else
-            total = (discount * line_item.quantity)
-          end
+      order = line_item.order
+      order.line_items.each do |li|
+        next unless discount_applies_to.include? li.variant
+        discount = relations.detect { |rel| rel.related_to.master == li.variant }.discount_amount
+        if li.quantity < line_item.quantity
+          total = (discount * li.quantity)
+        else
+          total = (discount * line_item.quantity)
         end
+      end
 
       total
     end
