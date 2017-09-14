@@ -9,9 +9,9 @@ module SpreeRelatedProducts
 
   module VERSION
     MAJOR = 3
-    MINOR = 2
+    MINOR = 3
     TINY  = 0
-    PRE   = 'alpha'.freeze
+    PRE   = 'beta'.freeze
 
     STRING = [MAJOR, MINOR, TINY, PRE].compact.join('.')
   end
