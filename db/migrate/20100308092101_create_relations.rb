@@ -1,4 +1,4 @@
-class CreateRelations < ActiveRecord::Migration
+class CreateRelations < SpreeExtension::Migration[4.2]
   def self.up
     create_table :relations, force: true do |t|
       t.references :relation_type

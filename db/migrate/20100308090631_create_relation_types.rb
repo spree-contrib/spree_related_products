@@ -1,4 +1,4 @@
-class CreateRelationTypes < ActiveRecord::Migration
+class CreateRelationTypes < SpreeExtension::Migration[4.2]
   def self.up
     create_table :relation_types do |t|
       t.string :name
