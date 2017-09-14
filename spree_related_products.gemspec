@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = SpreeRelatedProducts.version
   s.summary     = 'Allows multiple types of relationships between products to be defined'
   s.description = s.summary
-  s.required_ruby_version = '>= 2.1.0'
+  s.required_ruby_version = '>= 2.2.7'
 
   s.author       = 'Brian Quinn'
   s.email        = 'brian@railsdog.com'
