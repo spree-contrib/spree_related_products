@@ -20,6 +20,10 @@ rvm:
   - 2.3.1
   - 2.2.7
 
+matrix:
+    allow_failures:
+          - gemfile: gemfiles/spree_master.gemfile
+
 addons:
   apt:
     packages:
