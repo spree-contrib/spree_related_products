@@ -21,7 +21,11 @@
         <td class="handle move-handle">
           <span class="icon icon-move handle"></span>
         </td>
-        <td><%= link_to relation.related_to.name, relation.related_to %></td>
+        <% if defined? Spree::Frontend %>
+          <td><%= link_to relation.related_to.name, relation.related_to %></td>
+        <% else %>
+          <td><%= link_to relation.related_to.name, admin_product_path(relation.related_to) %></td>
+        <% end %>
         <td><%= relation.relation_type.name %></td>
         <td>
           <%= form_for relation, url: admin_product_relation_path(relation.relatable, relation) do |f| %>
