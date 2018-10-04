@@ -31,9 +31,9 @@
           <%= form_for relation, url: admin_product_relation_path(relation.relatable, relation) do |f| %>
             <div class="input-group">
               <%= f.text_field :discount_amount, class: 'form-control text-center' %>
-              <span class="input-group-btn">
+              <div class="input-group-append">
                 <%= f.button Spree.t(:update), type: 'submit', class: 'btn btn-primary' %>
-              </span>
+              </div>
             </div>
           <% end %>
         </td>

@@ -45,27 +45,28 @@
 
   <%= content_for :head do %>
     <script type="text/javascript">
-      var expand_variants = false;
-      $(document).on('click', '#add_related_product', function(){
-        if($('#add_variant_name').val() == '') { return false; }
-        update_target = $(this).data('update');
-        $.ajax({
-          dataType: 'script',
-          url: this.href,
-          type: 'POST',
-          data: {
-            'relation[related_to_type]' : 'Product',
-            'relation[related_to_id]': $('#add_variant_name').val(),
-            'relation[relation_type_id]': $('#add_type').val(),
-            'relation[discount_amount]' : $('#add_discount').val()
-          }
-        });
-        return false;
-      });
+     var expand_variants = false;
+     $(document).on('click', '#add_related_product', function(){
+       if($('#add_variant_name').val() == '') { return false; }
+       update_target = $(this).data('update');
+       $.ajax({
+         url: this.href,
+         dataType: 'script',
+         type: 'POST',
+         data: {
+           authenticity_token: AUTH_TOKEN,
+           'relation[related_to_type]' : 'Product',
+           'relation[related_to_id]': $('#add_variant_name').val(),
+           'relation[relation_type_id]': $('#add_type').val(),
+           'relation[discount_amount]' : $('#add_discount').val()
+         }
+       });
+       return false;
+     });
 
-      $(function () {
-        $('#add_variant_name.variant_autocomplete').variantAutocomplete();
-      });
+     $(function () {
+       $('#add_variant_name.variant_autocomplete').variantAutocomplete();
+     });
     </script>
   <% end %>
 <% end %>
