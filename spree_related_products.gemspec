@@ -21,8 +21,6 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.has_rdoc = false
-
   s.add_runtime_dependency 'spree_backend', '>= 3.1.0', '< 4.0'
   s.add_runtime_dependency 'spree_extension'
 
