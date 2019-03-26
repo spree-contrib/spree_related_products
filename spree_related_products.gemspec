@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_runtime_dependency 'spree_backend', '>= 3.1.0', '< 4.0'
+  s.add_runtime_dependency 'spree_backend', '>= 3.1.0', '< 5.0'
   s.add_runtime_dependency 'spree_extension'
 
   s.add_development_dependency 'appraisal'
@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'factory_bot', '~> 4.7'
   s.add_development_dependency 'ffaker'
   s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'sqlite3', '~> 1.3.6'
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'capybara-screenshot'
   s.add_development_dependency 'selenium-webdriver'
