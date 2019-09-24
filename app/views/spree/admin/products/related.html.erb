@@ -53,6 +53,9 @@
           dataType: 'script',
           url: this.href,
           type: 'POST',
+          headers: {
+            'X-CSRF-Token': $('meta[name=csrf-token]').attr("content")
+          },
           data: {
             'relation[related_to_type]' : 'Product',
             'relation[related_to_id]': $('#add_variant_name').val(),
