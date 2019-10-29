@@ -18,7 +18,7 @@ module Spree
 
       def update
         authorize! :update, Relation
-        if @relation.update_attributes(relation_params)
+        if @relation.update(relation_params)
           respond_with(@relation, status: 200, default_template: :show)
         else
           invalid_resource!(@relation)
