@@ -1,35 +1,37 @@
-Spree::Product.class_eval do
-  has_many :relations, -> { order(:position) }, as: :relatable
+module Spree::ProductDecorator
+  def self.prepended(base)
+    base.has_many :relations, -> { order(:position) }, as: :relatable
 
-  # When a Spree::Product is destroyed, we also want to destroy all Spree::Relations
-  # "from" it as well as "to" it.
-  after_destroy :destroy_product_relations
+    # When a Spree::Product is destroyed, we also want to destroy all Spree::Relations
+    # "from" it as well as "to" it.
+    base.after_destroy :destroy_product_relations
 
-  # Returns all the Spree::RelationType's which apply_to this class.
-  def self.relation_types
-    Spree::RelationType.where(applies_to: to_s).order(:name)
-  end
+    # Returns all the Spree::RelationType's which apply_to this class.
+    def base.relation_types
+      Spree::RelationType.where(applies_to: to_s).order(:name)
+    end
 
-  # The AREL Relations that will be used to filter the resultant items.
-  #
-  # By default this will remove any items which are deleted, or not yet available.
-  #
-  # You can override this method to fine tune the filter. For example,
-  # to only return Spree::Product's with more than 2 items in stock, you could
-  # do the following:
-  #
-  #   def self.relation_filter
-  #     set = super
-  #     set.where('spree_products.count_on_hand >= 2')
-  #   end
-  #
-  # This could also feasibly be overridden to sort the result in a
-  # particular order, or restrict the number of items returned.
-  def self.relation_filter
-    where('spree_products.deleted_at' => nil)
-      .where('spree_products.available_on IS NOT NULL')
-      .where('spree_products.available_on <= ?', Time.now)
-      .references(self)
+    # The AREL Relations that will be used to filter the resultant items.
+    #
+    # By default this will remove any items which are deleted, or not yet available.
+    #
+    # You can override this method to fine tune the filter. For example,
+    # to only return Spree::Product's with more than 2 items in stock, you could
+    # do the following:
+    #
+    #   def self.relation_filter
+    #     set = super
+    #     set.where('spree_products.count_on_hand >= 2')
+    #   end
+    #
+    # This could also feasibly be overridden to sort the result in a
+    # particular order, or restrict the number of items returned.
+    def base.relation_filter
+      where('spree_products.deleted_at' => nil)
+        .where('spree_products.available_on IS NOT NULL')
+        .where('spree_products.available_on <= ?', Time.now)
+        .references(self)
+    end
   end
 
   # Decides if there is a relevant Spree::RelationType related to this class
@@ -104,3 +106,5 @@ Spree::Product.class_eval do
     name.to_s.downcase.gsub(' ', '_').pluralize
   end
 end
+
+Spree::Product.prepend(Spree::ProductDecorator)
