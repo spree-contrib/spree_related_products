@@ -53,15 +53,27 @@ RSpec.describe Spree::Admin::RelationsController, type: :controller do
 
     context '#update' do
       it 'redirects to product/related url' do
-        put :update, params: { product_id: product.id, id: relation.id, relation: { discount_amount: 2.0 } }
+        params = {
+          product_id: product.id,
+          id: relation.id,
+          relation: { discount_amount: 2.0 }
+        }
+
+        put :update, params: params
         expect(response).to redirect_to(spree.admin_product_path(relation.relatable) + '/related')
       end
     end
 
     context '#destroy' do
       it 'records successfully' do
+        params = {
+          id: relation.id,
+          product_id: relation.relatable_id,
+          format: :js
+        }
+
         expect {
-          delete :destroy, params: { id: relation.id, product_id: relation.relatable_id, format: :js }
+          delete :destroy, params: params
         }.to change(Spree::Relation, :count).by(-1)
       end
     end
