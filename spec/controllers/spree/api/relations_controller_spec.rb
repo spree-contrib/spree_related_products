@@ -35,8 +35,9 @@ RSpec.describe Spree::Api::RelationsController, type: :controller do
 
     context '#create' do
       it 'creates the relation' do
-        post :create, params: valid_params
-        expect(response.status).to eq(201)
+        expect {
+          post :create, params: valid_params
+        }.to change(Spree::Relation, :count).by(1)
       end
 
       it 'responds 422 error with invalid params' do
