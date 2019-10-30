@@ -47,7 +47,9 @@ RSpec.describe Spree::Admin::RelationsController, type: :controller do
       it 'raises error with invalid params' do
         expect {
           post :create, format: :js
-        }.to raise_error
+        }.to raise_error(
+          ActionController::UrlGenerationError, 'No route matches {:action=>"create", :controller=>"spree/admin/relations", :format=>:js}'
+        )
       end
     end
 

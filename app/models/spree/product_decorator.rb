@@ -69,7 +69,9 @@ module Spree
     private
 
     def find_relation_type(relation_name)
-      self.class.relation_types.detect { |rt| format_name(rt.name) == format_name(relation_name) }
+      self.class.relation_types.detect do |rt|
+        format_name(rt.name) == format_name(relation_name)
+      end
     rescue ActiveRecord::StatementInvalid
       # This exception is throw if the relation_types table does not exist.
       # And this method is getting invoked during the execution of a migration
@@ -83,7 +85,9 @@ module Spree
     # them using +Product.relation_filter+ to remove unwanted items.
     def relations_for_relation_type(relation_type)
       # Find all the relations that belong to us for this RelationType, ordered by position
-      related_ids = relations.where(relation_type_id: relation_type.id).order(:position).select(:related_to_id)
+      related_ids = relations.where(relation_type_id: relation_type.id)
+                             .order(:position)
+                             .select(:related_to_id)
 
       # Construct a query for all these records
       result = self.class.where(id: related_ids)
@@ -91,10 +95,8 @@ module Spree
       # Merge in the relation_filter if it's available
       result = result.merge(self.class.relation_filter) if relation_filter
 
-      # make sure results are in same order as related_ids array  (position order)
-      if result.present?
-        result.where(id: related_ids).order(:position)
-      end
+      # make sure results are in same order as related_ids array (position order)
+      result.where(id: related_ids).order(:position) if result.present?
 
       result
     end
@@ -107,7 +109,7 @@ module Spree
     end
 
     def format_name(name)
-      name.to_s.downcase.gsub(' ', '_').pluralize
+      name.to_s.downcase.tr(' ', '_').pluralize
     end
   end
 end
