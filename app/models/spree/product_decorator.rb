@@ -8,9 +8,12 @@ module Spree
       # When a Spree::Product is destroyed, we also want to destroy all
       # Spree::Relations "from" it as well as "to" it.
       base.after_destroy :destroy_product_relations
+      base.extend ClassMethods
+    end
 
+    module ClassMethods
       # Returns all the Spree::RelationType's which apply_to this class.
-      def base.relation_types
+      def relation_types
         Spree::RelationType.where(applies_to: to_s).order(:name)
       end
 
@@ -30,7 +33,7 @@ module Spree
       #
       # This could also feasibly be overridden to sort the result in a
       # particular order, or restrict the number of items returned.
-      def base.relation_filter
+      def relation_filter
         where('spree_products.deleted_at' => nil)
           .where('spree_products.available_on IS NOT NULL')
           .where('spree_products.available_on <= ?', Time.now)
@@ -44,9 +47,6 @@ module Spree
     # If so, it calls relations_for_relation_type. Otherwise it passes
     # it up the inheritance chain.
     def method_missing(method, *args)
-      # Fix for Ruby 1.9
-      raise NoMethodError if method == :to_ary
-
       relation_type = find_relation_type(method)
       if relation_type.nil?
         super
