@@ -20,6 +20,7 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 require 'ffaker'
 require 'pry'
+require 'capybara-select-2'
 
 RSpec.configure do |config|
   config.fail_fast = false
@@ -33,6 +34,8 @@ RSpec.configure do |config|
   end
 
   config.order = :random
+
+  config.include CapybaraSelect2
 end
 
 Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |file| require file }
