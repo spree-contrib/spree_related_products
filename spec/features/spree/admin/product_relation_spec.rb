@@ -16,8 +16,13 @@ RSpec.feature 'Admin Product Relation', :js do
     expect(page).to have_text product.name
 
     within('#add-line-item') do
-      select2_search other.name, from: 'Name or SKU'
-      select2_search relation_type.name, from: 'Type'
+      if Spree.version.to_f >= 4.1
+        select2 other.name, from: 'Name or SKU', search: true, match: :first
+        select2 relation_type.name, from: 'Type', search: true, match: :first
+      else
+        select2_search other.name, from: 'Name or SKU'
+        select2_search relation_type.name, from: 'Type'
+      end
       fill_in 'add_discount', with: '0.8'
       click_link 'Add'
     end
