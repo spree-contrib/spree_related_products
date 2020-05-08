@@ -12,7 +12,9 @@ RSpec.describe Spree::RelationType, type: :model do
       create(:relation_type, name: 'Gears')
       expect {
         create(:relation_type, name: 'gears')
-      }.to raise_error
+      }.to raise_error(
+        ActiveRecord::RecordInvalid, 'Validation failed: Name has already been taken'
+      )
     end
   end
 end

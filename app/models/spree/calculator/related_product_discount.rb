@@ -12,22 +12,23 @@ module Spree
         order = object
       end
 
-      return unless eligible?(order)
-      total = order.line_items.inject(0) do |sum, line_item|
-        relations =  Spree::Relation.where(*discount_query(line_item))
-        discount_applies_to = relations.map {|rel| rel.related_to.master }
+      total = 0
+      if eligible?(order)
+        total = order.line_items.inject(0) do |sum, line_item|
+          relations =  Spree::Relation.where(*discount_query(line_item))
+          discount_applies_to = relations.map {|rel| rel.related_to.master.product }
+          order.line_items.each do |li|
+            next unless discount_applies_to.include? li.variant.product
+            discount = relations.detect { |rel| rel.related_to.master.product == li.variant.product }.discount_amount
+            sum +=  if li.quantity < line_item.quantity
+                      (discount * li.quantity)
+                    else
+                      (discount * line_item.quantity)
+                    end
+          end
 
-        order.line_items.each do |li|
-          next unless discount_applies_to.include? li.variant
-          discount = relations.detect { |rel| rel.related_to.master == li.variant }.discount_amount
-          sum +=  if li.quantity < line_item.quantity
-                    (discount * li.quantity)
-                  else
-                    (discount * line_item.quantity)
-                  end
+          sum
         end
-
-        sum
       end
 
       total

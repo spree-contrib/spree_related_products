@@ -20,7 +20,7 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 require 'ffaker'
 require 'pry'
-require 'versioncake/version'
+require 'capybara-select-2'
 
 RSpec.configure do |config|
   config.fail_fast = false
@@ -33,14 +33,9 @@ RSpec.configure do |config|
     expectations.syntax = :expect
   end
 
-  if VersionCake::VERSION >= '3'
-    config.include VersionCake::TestHelpers, type: :controller
-    config.before(:each, type: :controller) do
-      set_request_version('', 1)
-    end
-  end
-
   config.order = :random
+
+  config.include CapybaraSelect2
 end
 
 Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |file| require file }

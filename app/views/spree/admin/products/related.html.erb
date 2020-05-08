@@ -3,6 +3,16 @@
 
 <%= csrf_meta_tag %>
 
+<%= content_for :page_actions do %>
+  <%=
+    button_link_to(
+      Spree.t(:preview_product),
+      spree.product_url(@product),
+      class: 'btn-outline-secondary', icon: 'eye-open', id: 'admin_preview_product', target: :blank
+    )
+  %>
+<% end %>
+
 <% if @relation_types.empty? %>
   <div class="alert alert-warning no-objects-found">
     <%= Spree.t(:no_relation_types) %>
