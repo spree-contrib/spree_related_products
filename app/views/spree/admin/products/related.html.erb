@@ -3,14 +3,16 @@
 
 <%= csrf_meta_tag %>
 
-<%= content_for :page_actions do %>
-  <%=
-    button_link_to(
-      Spree.t(:preview_product),
-      spree.product_url(@product),
-      class: 'btn-outline-secondary', icon: 'eye-open', id: 'admin_preview_product', target: :blank
-    )
-  %>
+<% if frontend_available? %>
+  <%= content_for :page_actions do %>
+    <%=
+      button_link_to(
+        Spree.t(:preview_product),
+        spree.product_url(@product),
+        class: 'btn-outline-secondary', icon: 'eye-open', id: 'admin_preview_product', target: :blank
+      )
+    %>
+  <% end %>
 <% end %>
 
 <% if @relation_types.empty? %>
