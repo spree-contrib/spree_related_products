@@ -22,25 +22,25 @@
     <fieldset>
       <legend><%= Spree.t(:add_related_product) %></legend>
       <div class="row">
-        <div id="related_product_name" class="col-md-5">
+        <div id="related_product_name" class="col-md-12 col-xl-5">
           <div class="form-group">
             <%= label_tag :add_variant_name, Spree.t(:name_or_sku_short) %>
             <%= hidden_field_tag :add_variant_name, '', class: 'variant_autocomplete', style: "display: block !important;" %>
           </div>
         </div>
-        <div id="related_product_type" class="col-md-4">
+        <div id="related_product_type" class="col-md-7 col-xl-4">
           <div class="form-group">
             <%= label_tag :add_type, Spree.t(:type) %>
             <%= select_tag :add_type, options_for_select(@relation_types.map { |rt| [rt.name, rt.id] }), class: 'select2' %>
           </div>
         </div>
-        <div id="related_product_discount" class="col-md-3">
+        <div id="related_product_discount" class="col-md-5 col-xl-3">
           <div class="form-group">
             <%= label_tag :add_discount, Spree.t(:discount_amount) %>
             <div class="input-group">
               <%= text_field_tag :add_discount, 0.0, class: 'form-control text-center' %>
               <span class="input-group-btn">
-                <%= button_link_to Spree.t(:add), admin_product_relations_url(@product), icon: 'add', class: 'btn-success', id: 'add_related_product', data: { update: 'products-table-wrapper' } %>
+                <%= button_link_to Spree.t(:add), admin_product_relations_url(@product), icon: 'add', class: 'btn-success my-0', id: 'add_related_product', data: { update: 'products-table-wrapper' } %>
               </span>
             </div>
           </div>
