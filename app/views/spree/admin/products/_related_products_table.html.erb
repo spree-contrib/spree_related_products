@@ -2,8 +2,8 @@
    <colgroup>
     <col style="width: 5%" />
     <col style="width: 35%" />
-    <col style="width: 35%" />
-    <col style="width: 20%" />
+    <col style="width: 30%" />
+    <col style="width: 25%" />
     <col style="width: 5%" />
   </colgroup>
   <thead>
@@ -29,10 +29,10 @@
         <td><%= relation.relation_type.name %></td>
         <td>
           <%= form_for relation, url: admin_product_relation_path(relation.relatable, relation) do |f| %>
-            <div class="input-group">
-              <%= f.text_field :discount_amount, class: 'form-control text-center' %>
+            <div class="input-group justify-content-center">
+              <%= f.text_field :discount_amount, class: 'form-control text-center my-1 w-50' %>
               <span class="input-group-btn">
-                <%= f.button Spree.t(:update), type: 'submit', class: 'btn btn-primary' %>
+                <%= f.button Spree.t(:update), type: 'submit', class: 'btn btn-primary m-1' %>
               </span>
             </div>
           <% end %>
