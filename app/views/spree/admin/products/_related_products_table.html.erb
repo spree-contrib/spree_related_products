@@ -19,7 +19,11 @@
     <% product.relations.each do |relation| %>
       <tr id="<%= spree_dom_id relation %>" data-hook="products_row">
         <td class="handle move-handle">
-          <span class="icon icon-move handle"></span>
+          <% if Spree.version.to_d >= 4.2 && defined?(svg_icon) %>
+            <%= svg_icon name: "sort.svg", width: '18', height: '18' %>
+          <% else %>
+            <span class="icon icon-move handle"></span>
+          <% end %>
         </td>
         <% if defined? Spree::Frontend %>
           <td><%= link_to relation.related_to.name, relation.related_to %></td>
