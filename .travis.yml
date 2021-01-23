@@ -15,7 +15,8 @@ services:
 language: ruby
 
 rvm:
-  - 2.6
+  - 2.7
+  - 3.0
 
 env:
   - DB=mysql
@@ -25,9 +26,17 @@ gemfile:
   - gemfiles/spree_3_7.gemfile
   - gemfiles/spree_4_0.gemfile
   - gemfiles/spree_4_1.gemfile
+  - gemfiles/spree_4_2.gemfile
   - gemfiles/spree_master.gemfile
 
 jobs:
+  exclude:
+  - rvm: 3.0
+    gemfile: gemfiles/spree_3_7.gemfile
+  - rvm: 3.0
+    gemfile: gemfiles/spree_4_0.gemfile
+  - rvm: 3.0
+    gemfile: gemfiles/spree_4_1.gemfile
   allow_failures:
     - gemfile: gemfiles/spree_master.gemfile
 
