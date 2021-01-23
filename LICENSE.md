@@ -1,4 +1,4 @@
-Copyright (c) 2010-2015 Brian Quinn and contributors.
+Copyright (c) 2010-2021 Brian Quinn and contributors.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
