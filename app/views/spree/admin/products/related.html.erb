@@ -27,7 +27,11 @@
         <div id="related_product_name" class="col-md-12 col-xl-5">
           <div class="form-group">
             <%= label_tag :add_variant_name, Spree.t(:name_or_sku_short) %>
-            <%= hidden_field_tag :add_variant_name, '', class: 'variant_autocomplete', style: "display: block !important;" %>
+            <% if Spree.version.to_d >= 4.2 %>
+              <%= select_tag :add_variant_name, nil , class: 'variant_autocomplete d-block w-100' %>
+            <% else %>
+              <%= hidden_field_tag :add_variant_name, '', class: 'variant_autocomplete', style: "display: block !important;" %>
+            <% end %>
           </div>
         </div>
         <div id="related_product_type" class="col-md-7 col-xl-4">
