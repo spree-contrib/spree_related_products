@@ -6,9 +6,7 @@
       <%= error_message_on :relation_type, :name %>
     </div>
     <div data-hook="applies_to" class="form-group">
-      <%= f.label :applies_to, Spree.t(:applies_to) %> <span class="required">*</span>
-      <%= f.text_field :applies_to, value: f.object.nil? ? 'Spree::Product' : f.object.applies_to, class: 'form-control' %>
-      <%= error_message_on :relation_type, :applies_to %>
+      <%= f.hidden_field :applies_to, value: f.object.nil? ? 'Spree::Product' : f.object.applies_to, class: 'form-control' %>
     </div>
     <div data-hook="description" class="form-group">
       <%= f.label :description, Spree.t(:description) %><br />
