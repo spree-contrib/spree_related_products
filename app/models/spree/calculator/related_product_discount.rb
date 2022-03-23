@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Spree::Calculator::RelatedProductDiscount < Spree::Calculator
+class Spree::Calculator::RelatedProductDiscount < ::Spree::Calculator
   def self.description
     Spree.t(:related_product_discount)
   end
@@ -47,6 +47,5 @@ class Spree::Calculator::RelatedProductDiscount < Spree::Calculator
       'Spree::Product',
       line_item.variant.product.id
     ]
-
   end
 end
