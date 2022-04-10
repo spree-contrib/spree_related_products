@@ -3,5 +3,5 @@ Deface::Override.new(
   name: 'add_related_products_admin_tab',
   insert_bottom: '[data-hook="admin_product_tabs"]',
   partial: 'spree/admin/products/related_products',
-  original: 'f73e3520bb51c6b845c3f36f013c0d824f64bca4'
+  original: 'c4791d35732b95bae11a32d2f9b6d0e6155f1fea'
 )
