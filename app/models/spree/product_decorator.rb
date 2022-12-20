@@ -4,6 +4,7 @@ module Spree
   module ProductDecorator
     def self.prepended(base)
       base.has_many :relations, -> { order(:position) }, class_name: 'Spree::Relation', as: :relatable
+      base.has_many :reverse_relations, -> { order(:position) }, class_name: 'Spree::Relation', as: :related_to
       base.has_many :relation_types, -> { distinct.reorder(nil) }, class_name: 'Spree::RelationType', through: :relations
 
       # When a Spree::Product is destroyed, we also want to destroy all
