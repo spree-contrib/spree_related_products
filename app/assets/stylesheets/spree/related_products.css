@@ -1,0 +1,8 @@
+/*
+* This is a manifest file that includes stylesheets for spree_related_products
+ *= require_self
+*/
+
+#related-products .container.position-relative {
+  max-width: 95%;
+}
