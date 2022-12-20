@@ -1,5 +1,5 @@
 Spree::Core::Engine.add_routes do
-  namespace :admin do
+  namespace :admin, path: Spree.admin_path do
     resources :relation_types
     resources :products, only: [] do
       get :related, on: :member
