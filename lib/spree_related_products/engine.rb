@@ -4,10 +4,14 @@ module SpreeRelatedProducts
     isolate_namespace Spree
     engine_name 'spree_related_products'
 
-    config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/models/spree/calculator)
+    config.autoload_paths += %W(#{config.root}/lib)
 
-    initializer 'spree.promo.register.promotion.calculators' do |app|
-      app.config.spree.calculators.promotion_actions_create_adjustments << Spree::Calculator::RelatedProductDiscount
+    # Promotion rules need to be evaluated on after initialize otherwise
+    # Spree.user_class would be nil and users might experience errors related
+    # to malformed model associations (Spree.user_class is only defined on
+    # the app initializer)
+    config.after_initialize do
+      config.spree.calculators.promotion_actions_create_adjustments << Spree::Calculator::RelatedProductDiscount
     end
 
     class << self
