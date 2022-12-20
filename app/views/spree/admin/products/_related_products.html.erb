@@ -1,4 +1,9 @@
-<% active_class = 'active' if current == 'Related Products' %>
-<li>
-  <%= link_to_with_icon 'resize-small', Spree.t(:related_products), related_admin_product_url(@product), class: "nav-link #{active_class}" %>
-</li>
+<% content_for(:page_tabs) do %>
+  <%= content_tag :li, class: 'nav-item' do %>
+    <%= link_to_with_icon 'resize-small',
+      Spree.t(:related_products),
+      related_admin_product_url(@product),
+      class: "nav-link #{'active' if current == :related_products}" %>
+
+  <% end if can?(:admin, Spree::Product) && !@product.deleted? %>
+<% end %>
