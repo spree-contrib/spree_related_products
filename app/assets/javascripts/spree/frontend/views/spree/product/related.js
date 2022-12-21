@@ -4,7 +4,7 @@ Spree.fetchRelatedProducts = function (id, htmlContainer) {
   return $.ajax({
     url: Spree.routes.product_related(id)
   }).done(function (data) {
-    htmlContainer.html(data)
+    htmlContainer.replaceWith(data)
     htmlContainer.find('.carousel').carouselBootstrap4()
   })
 }
