@@ -1,3 +1,5 @@
+require 'spree_api_v1'
+
 module SpreeRelatedProducts
   class Engine < Rails::Engine
     require 'spree/core'
