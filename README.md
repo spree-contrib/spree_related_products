@@ -81,6 +81,11 @@ Note: In order for the coupon to be automatically applied, you must create a pro
   bundle exec rails g spree_related_products:install
   ```
 
+4. Add to your `vendor/assets/stylesheets/spree/frontend/all.css`
+  ```
+  *= require spree/related_products
+  ```
+
 4. Restart your server
 
   If your server was running, restart it so that it can find the assets properly.

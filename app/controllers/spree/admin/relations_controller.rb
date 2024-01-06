@@ -11,7 +11,9 @@ module Spree
         @relation.related_to = Spree::Variant.find(relation_params[:related_to_id]).product
         @relation.save
 
-        respond_with(@relation)
+        respond_to do |format|
+          format.js { render :create, layout: false }
+        end
       end
 
       def update
