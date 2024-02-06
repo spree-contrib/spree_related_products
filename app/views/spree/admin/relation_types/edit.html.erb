@@ -1,16 +1,13 @@
 <% content_for :page_title do %>
-  <%= Spree.t(:editing_resource, resource: Spree::RelationType.model_name.human) %>
+  <%= link_to Spree.t(:relation_types), spree.admin_relation_types_url %> /
+  <%= @relation_type.name.capitalize %>
 <% end %>
 
-<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @relation_type } %>
-
-<% content_for :page_actions do %>
-  <%= button_link_to Spree.t(:back_to_resource_list, resource: Spree::RelationType.model_name.human), spree.admin_relation_types_path, class: 'btn-primary', icon: 'arrow-left' %>
-<% end %>
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @role } %>
 
 <%= form_for [:admin, @relation_type] do |f| %>
   <fieldset>
-    <%= render 'form', f: f %>
-    <%= render 'spree/admin/shared/edit_resource_links' %>
+    <%= render partial: 'form', locals: { f: f } %>
+    <%= render partial: 'spree/admin/shared/edit_resource_links' %>
   </fieldset>
 <% end %>
