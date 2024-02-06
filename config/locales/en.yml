@@ -16,3 +16,4 @@ en:
     add_related_product: Add Related Product
     name_or_sku_short: Name or SKU
     no_relation_types: You need to configure Relation Types before you can use this feature.
+    relation_types: Relation Types
