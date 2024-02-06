@@ -4,19 +4,16 @@ module SpreeRelatedProducts
     isolate_namespace Spree
     engine_name 'spree_related_products'
 
-    config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/models/spree/calculator)
+    config.autoload_paths += %W(#{config.root}/lib)
 
-    initializer 'spree.promo.register.promotion.calculators' do |app|
-      app.config.spree.calculators.promotion_actions_create_adjustments << Spree::Calculator::RelatedProductDiscount
+    def self.activate
+      Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*_decorator*.rb')) do |c|
+        Rails.configuration.cache_classes ? require(c) : load(c)
+      end
     end
 
-    class << self
-      def activate
-        cache_klasses = %W(#{config.root}/app/**/*_decorator*.rb)
-        Dir.glob(cache_klasses) do |klass|
-          Rails.configuration.cache_classes ? require(klass) : load(klass)
-        end
-      end
+    config.after_initialize do |app|
+      app.config.spree.calculators.promotion_actions_create_adjustments << ::Spree::Calculator::RelatedProductDiscount
     end
 
     config.to_prepare(&method(:activate).to_proc)
