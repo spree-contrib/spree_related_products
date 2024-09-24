@@ -16,11 +16,20 @@ module SpreeRelatedProducts
       config.spree.calculators.promotion_actions_create_adjustments << Spree::Calculator::RelatedProductDiscount
     end
 
+    initializer "let the main autoloader ignore this engine's overrides" do
+      overrides = root.join("app/overrides")
+      Rails.autoloaders.main.ignore(overrides)
+    end
+
     class << self
       def activate
         cache_klasses = %W(#{config.root}/app/**/*_decorator*.rb)
         Dir.glob(cache_klasses) do |klass|
           Rails.configuration.cache_classes ? require(klass) : load(klass)
+        end
+
+        Dir.glob(File.join(File.dirname(__FILE__), "../../app/overrides/*.rb")) do |c|
+          load(c)
         end
       end
     end
