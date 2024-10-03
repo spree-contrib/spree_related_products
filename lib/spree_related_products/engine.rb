@@ -1,13 +1,24 @@
+require 'spree_api_v1'
+
 module SpreeRelatedProducts
   class Engine < Rails::Engine
     require 'spree/core'
     isolate_namespace Spree
     engine_name 'spree_related_products'
 
-    config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/models/spree/calculator)
+    config.autoload_paths += %W(#{config.root}/lib)
 
-    initializer 'spree.promo.register.promotion.calculators' do |app|
-      app.config.spree.calculators.promotion_actions_create_adjustments << Spree::Calculator::RelatedProductDiscount
+    # Promotion rules need to be evaluated on after initialize otherwise
+    # Spree.user_class would be nil and users might experience errors related
+    # to malformed model associations (Spree.user_class is only defined on
+    # the app initializer)
+    config.after_initialize do
+      config.spree.calculators.promotion_actions_create_adjustments << Spree::Calculator::RelatedProductDiscount
+    end
+
+    initializer "let the main autoloader ignore this engine's overrides" do
+      overrides = root.join("app/overrides")
+      Rails.autoloaders.main.ignore(overrides)
     end
 
     class << self
@@ -15,6 +26,10 @@ module SpreeRelatedProducts
         cache_klasses = %W(#{config.root}/app/**/*_decorator*.rb)
         Dir.glob(cache_klasses) do |klass|
           Rails.configuration.cache_classes ? require(klass) : load(klass)
+        end
+
+        Dir.glob(File.join(File.dirname(__FILE__), "../../app/overrides/*.rb")) do |c|
+          load(c)
         end
       end
     end

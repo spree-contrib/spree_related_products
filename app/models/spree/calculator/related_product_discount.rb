@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+require_dependency 'spree/calculator'
+
 module Spree
-  class Calculator::RelatedProductDiscount < Spree::Calculator
+  class Calculator::RelatedProductDiscount < Calculator
     def self.description
       Spree.t(:related_product_discount)
     end

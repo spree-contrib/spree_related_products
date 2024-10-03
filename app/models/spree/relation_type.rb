@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Spree::RelationType < ActiveRecord::Base
   has_many :relations, dependent: :destroy
 

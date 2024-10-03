@@ -1,5 +1,5 @@
 module SpreeRelatedProducts
-  VERSION = '3.4.0'.freeze
+  VERSION = '4.5.0'.freeze
 
   module_function
 
